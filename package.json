@@ -1,0 +1,35 @@
+{
+    "name": "apnagent"
+  , "version": "0.0.0"
+  , "description": "Node adapter for Apple Push Notification Service"
+  , "author": "Jake Luer <jake@alogicalpardox.com> (http://alogicalparadox.com)"
+  , "license": "MIT"
+  , "keywords": [
+        "apn"
+      , "apple"
+      , "push"
+      , "notifications"
+      , "ios"
+      , "iphone"
+      , "ipad"
+    ]
+  , "repository": {
+        "type": "git"
+      , "url": "git@github.com:logicalparadox/apnagent.git"
+    }
+  , "engines": {
+      "node": "*"
+    }
+  , "main": "./index"
+  , "scripts": {
+      "test": "make test"
+    }
+  , "dependencies": {
+        "debug": "*"
+      , "dragonfly": "0.2.x"
+    }
+  , "devDependencies": {
+        "chai": "*"
+      , "mocha": "*"
+    }
+}
