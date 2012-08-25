@@ -2,13 +2,7 @@
 
 > Node service adapater for Apple Push Notification (APN) Service.
 
-#### Installation
-
-`apnagent` package is available for node through [npm](http://npmjs.org).
-
-```bash
-npm install apnagent
-```
+Project under heavy development. Will be release onto NPM soon.
 
 #### License
 
