@@ -11,5 +11,4 @@ function req (name) {
 
 global.__apn = {
     Message: req('message')
-  , codec: req('codec')
 }
