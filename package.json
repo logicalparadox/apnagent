@@ -28,6 +28,7 @@
         "debug": "*"
       , "dragonfly": "0.2.x"
       , "idris": "0.2.x"
+      , "facet": "0.1.x"
       , "lotus": "0.1.x"
       , "tea": "0.1.x"
     }
