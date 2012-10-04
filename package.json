@@ -29,6 +29,7 @@
       , "dragonfly": "0.2.x"
       , "idris": "0.2.x"
       , "lotus": "0.1.x"
+      , "tea": "0.1.x"
     }
   , "devDependencies": {
         "chai": "*"
