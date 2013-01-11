@@ -15,3 +15,6 @@ node_modules
 npm-debug.log
 
 coverage.html
+
+test/certs/*
+!test/certs/.gitkeep
