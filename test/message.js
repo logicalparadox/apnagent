@@ -100,7 +100,7 @@ describe('messages', function () {
 
   });
 
-  describe('export', function () {
+  describe('.serialize()', function () {
     var longBody = [
         'Hello Universe. I am going to make'
       , 'this string really long so that it is truncated'
@@ -117,7 +117,7 @@ describe('messages', function () {
         .alert('body', 'Hello Universe')
         .badge(1);
 
-      var json = msg.export();
+      var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json), msg.encoding)
         .should.not.be.above(256);
@@ -141,7 +141,7 @@ describe('messages', function () {
         .badge(3)
         .sound('ping');
 
-      var json = msg.export();
+      var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json), msg.encoding)
         .should.not.be.above(256);
@@ -167,7 +167,7 @@ describe('messages', function () {
         .alert('body', longBody)
         .badge(1);
 
-      var json = msg.export();
+      var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json), msg.encoding)
         .should.not.be.above(256);
@@ -196,7 +196,7 @@ describe('messages', function () {
         .alert('launch-image', 'img.png')
         .badge(1);
 
-      var json = msg.export();
+      var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json), msg.encoding)
         .should.not.be.above(256);
@@ -227,7 +227,7 @@ describe('messages', function () {
         .badge(1);
 
       (function () {
-        msg.export();
+        msg.serialize();
       }).should.throw('Message too long.');
     });
 
@@ -241,7 +241,7 @@ describe('messages', function () {
         .badge(1);
 
       (function () {
-        msg.export();
+        msg.serialize();
       }).should.throw('Message too long.');
     });
 

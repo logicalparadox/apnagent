@@ -25,12 +25,12 @@
       "test": "make test"
     }
   , "dependencies": {
-        "debug": "*"
-      , "dragonfly": "0.2.x"
-      , "idris": "0.2.x"
-      , "facet": "0.1.x"
-      , "lotus": "0.1.x"
-      , "tea": "0.1.x"
+        "breeze-queue": "0.2.x"
+      , "drip": "1.1.x"
+      , "facet": "0.3.x"
+      , "lotus": "0.2.x"
+      , "tea-extend": "0.2.x"
+      , "sherlock": "*"
     }
   , "devDependencies": {
         "chai": "*"
