@@ -113,16 +113,17 @@ describe('messages', function () {
       var msg = new Message();
 
       msg
+        .device('00')
         .set('custom', 'variable')
         .alert('body', 'Hello Universe')
         .badge(1);
 
       var json = msg.serialize();
 
-      Buffer.byteLength(JSON.stringify(json), msg.encoding)
+      Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
         .should.not.be.above(256);
 
-      json.should.deep.equal({
+      json.payload.should.deep.equal({
           custom: 'variable'
         , aps: {
               alert: 'Hello Universe'
@@ -135,6 +136,7 @@ describe('messages', function () {
       var msg = new Message();
 
       msg
+        .device('00')
         .set('custom', 'variable')
         .alert('body', 'Hello Universe')
         .alert('loc-key', 'SOME_KEY')
@@ -143,10 +145,10 @@ describe('messages', function () {
 
       var json = msg.serialize();
 
-      Buffer.byteLength(JSON.stringify(json), msg.encoding)
+      Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
         .should.not.be.above(256);
 
-      json.should.deep.equal({
+      json.payload.should.deep.equal({
           custom: 'variable'
         , aps: {
               alert: {
@@ -163,16 +165,17 @@ describe('messages', function () {
       var msg = new Message();
 
       msg
+        .device('00')
         .set('custom', 'variable')
         .alert('body', longBody)
         .badge(1);
 
       var json = msg.serialize();
 
-      Buffer.byteLength(JSON.stringify(json), msg.encoding)
+      Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
         .should.not.be.above(256);
 
-      json.should.deep.equal({
+      json.payload.should.deep.equal({
           custom: 'variable'
         , aps: {
               alert:
@@ -191,6 +194,7 @@ describe('messages', function () {
       var msg = new Message();
 
       msg
+        .device('00')
         .set('custom', 'variable')
         .alert('body', longBody)
         .alert('launch-image', 'img.png')
@@ -198,10 +202,10 @@ describe('messages', function () {
 
       var json = msg.serialize();
 
-      Buffer.byteLength(JSON.stringify(json), msg.encoding)
+      Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
         .should.not.be.above(256);
 
-      json.should.deep.equal({
+      json.payload.should.deep.equal({
           custom: 'variable'
         , aps: {
               alert: {
