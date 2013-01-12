@@ -1,6 +1,6 @@
 {
     "name": "apnagent"
-  , "version": "0.1.0"
+  , "version": "0.1.1"
   , "description": "Node adapter for Apple Push Notification Service"
   , "author": "Jake Luer <jake@alogicalpardox.com> (http://alogicalparadox.com)"
   , "license": "MIT"

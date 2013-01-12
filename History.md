@@ -1,4 +1,11 @@
 
+0.1.1 / 2013-01-12 
+==================
+
+  * Add public method for closing the connection
+  * Close -> destroy
+  * Fix the way we build a codec name
+
 0.1.0 / 2013-01-12 
 ==================
 
