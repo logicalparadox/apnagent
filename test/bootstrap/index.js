@@ -1,7 +1,7 @@
 global.chai = require('chai');
-global.Should = chai.Should();
+global.should = chai.should();
 
-global.apn = require('../..');
+global.apnagent = require('../..');
 
 function req (name) {
   return process.env.APNAGENT_COV

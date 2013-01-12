@@ -5,6 +5,7 @@ test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 		--require ./test/bootstrap \
 		--reporter $(REPORTER) \
+		--timeout 10000 \
 		$(TESTS)
 
 test-cov: lib-cov
