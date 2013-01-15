@@ -1,4 +1,16 @@
 
+0.2.0 / 2013-01-15 
+==================
+
+  * docs: update readme and package contribs
+  * message: [send] pseudo-alias to msg._agent.send(this, cb)
+  * Merge branch 'feature/reconnect'
+  * test: [agent] should be able to reconnect
+  * agent: [connect] support for reconnnect
+  * Merge branch 'feature/events'
+  * agent: events, custom errors, and improved codec lookup
+  * errors: add custom errors and expose via exports.errors
+
 0.1.1 / 2013-01-12 
 ==================
 
