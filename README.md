@@ -1,14 +1,35 @@
 # APN Agent
 
-> Node service adapater for Apple Push Notification (APN) Service.
+> Node adapater for Apple Push Notification (APN) Service.
 
-Project under heavy development. Will be release onto NPM soon.
+#### Features
+
+- chainable message builder
+- support for both simple and enhanced apple message protocol
+- easy sandbox mode
+- continuous connection and auto-reconnect on timeout
+
+#### Coming Soon
+
+- feature complete mock agent for local-only testing/development
+- apn feedback service integration
+- documenation website
+
+#### Related Projects
+
+- [apnagent-ios](https://github.com/logicalparadox/apnagent-ios): Tiny iOS application for use with the example(s).
+
+## Installation
+
+`apnagent` is available for [node.js](http://nodejs.org) on [npm](http://npmjs.org).
+
+    $ npm install apnagent
 
 #### License
 
 (The MIT License)
 
-Copyright (c) 2012 Jake Luer <jake@alogicalparadox.com>
+Copyright (c) 2012-2013 Jake Luer <jake@alogicalparadox.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
