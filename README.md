@@ -5,13 +5,12 @@
 #### Features
 
 - chainable message builder
+- feature complete mock agent for local-only testing/development
 - support for both simple and enhanced apple message protocol
-- easy sandbox mode
 - continuous connection and auto-reconnect on timeout
 
 #### Coming Soon
 
-- feature complete mock agent for local-only testing/development
 - apn feedback service integration
 - documenation website
 

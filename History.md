@@ -1,4 +1,23 @@
 
+0.3.0 / 2013-01-16 
+==================
+
+  * test: [agent] add common agent tests that run for both mock and live
+  * test: [travis] only test node 0.8.x
+  * test: [live-agent] change tests to only run if key/cert is available
+  * Merge branch 'feature/msgid'
+  * test: [agent] nextId and agent integration
+  * agent: [nextId] add nextId method and message.id getter
+  * Merge branch 'feature/mockagent'
+  * test: [mockagent] normalize reconnect process against live
+  * test: [mock-agent] add tests for mock agent
+  * agent: [mock] add mock agent
+  * agent: [util] normalize prep of gateway options
+  * agent: rename live agent from agent.js to live.js
+  * agent: add base class and live agent extends base class
+  * deps: update with tea-inherits
+  * agent: [old] remove single class agent
+
 0.2.0 / 2013-01-15 
 ==================
 
