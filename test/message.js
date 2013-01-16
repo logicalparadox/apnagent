@@ -1,7 +1,7 @@
 var sample_token = '5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf8d 3d5524c6'
   , device = new Buffer(sample_token.replace(/\s/g, ''), 'hex');
 
-describe('messages', function () {
+describe('Message', function () {
   var agent = new apnagent.MockAgent()
     , Message = __apn.Message;
 
