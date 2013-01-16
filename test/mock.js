@@ -13,10 +13,18 @@ describe('MockAgent', function () {
     var agent = new apnagent.MockAgent();
     agent.enable('sandbox');
     agent.connect(function (err) {
+      var reconnected = false;
+
       should.not.exist(err);
 
       agent.once([ 'gateway', 'reconnect' ], function () {
+        reconnected = true;
         agent.connected.should.be.true;
+        agent.close();
+      });
+
+      agent.once([ 'gateway', 'close' ], function () {
+        reconnected.should.be.true;
         done();
       });
 
