@@ -2,11 +2,15 @@ var sample_token = '5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf
   , device = new Buffer(sample_token.replace(/\s/g, ''), 'hex');
 
 describe('messages', function () {
-  var Message = __apn.Message;
+  var agent = new apnagent.MockAgent()
+    , Message = __apn.Message;
 
   it('can be constructed', function () {
-    var msg = new Message();
+    var msg = new Message(agent)
+      , msg2 = new Message(agent);
     msg.should.have.property('encoding', 'utf8');
+    msg.should.have.property('id', 0);
+    msg2.should.have.property('id', 1);
   });
 
   it('can set custom variables', function () {
