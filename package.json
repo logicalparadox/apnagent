@@ -22,7 +22,7 @@
       , "url": "git@github.com:logicalparadox/apnagent.git"
     }
   , "engines": {
-      "node": "*"
+      "node": ">= 0.8.0"
     }
   , "main": "./index"
   , "scripts": {

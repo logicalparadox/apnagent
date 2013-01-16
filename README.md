@@ -1,4 +1,4 @@
-# APN Agent
+# APN Agent [![Build Status](https://travis-ci.org/logicalparadox/apnagent.png?branch=master)](https://travis-ci.org/logicalparadox/apnagent)
 
 > Node adapater for Apple Push Notification (APN) Service.
 
