@@ -1,4 +1,11 @@
 
+0.3.1 / 2013-01-27 
+==================
+
+  * npmignore: ignore examples folder
+  * examples: [basic] add basic example
+  * deps: update lotus to 0.3.x, fixes writer dsl push bug
+
 0.3.0 / 2013-01-16 
 ==================
 
