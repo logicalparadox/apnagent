@@ -3,7 +3,7 @@ var sample_token = '5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf
 
 var Device = apnagent.Device;
 
-describe.only('Device', function () {
+describe('Device', function () {
   describe('.toBuffer()', function () {
     it('should return a buffer', function () {
       var device = new Device(sample_token);

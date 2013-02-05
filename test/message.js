@@ -89,16 +89,14 @@ describe('Message', function () {
     it('can set as buffer', function () {
       var msg = new Message()
         , res = msg.device(device);
-      msg.meta.device.should.be.instanceof(Buffer)
-      msg.meta.device.toString('hex').should.equal(device.toString('hex'));
+      msg.meta.device.toString().should.equal(device.toString('hex'));
       res.should.deep.equal(msg);
     });
 
     it('can set as string', function () {
       var msg = new Message()
         , res = msg.device(sample_token);
-      msg.meta.device.should.be.instanceof(Buffer);
-      msg.meta.device.toString('hex').should.equal(device.toString('hex'));
+      msg.meta.device.toString().should.equal(device.toString('hex'));
       res.should.deep.equal(msg);
     });
 
