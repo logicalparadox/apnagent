@@ -16,7 +16,7 @@
 
 #### Related Projects
 
-- [apnagent-ios](https://github.com/logicalparadox/apnagent-ios): Tiny iOS application for use with the example(s).
+- [apnagent-ios](https://github.com/logicalparadox/apnagent-ios): Tiny iOS application for use with the example(s) and live tests.
 
 ## Installation
 
