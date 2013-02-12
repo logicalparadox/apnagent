@@ -5,32 +5,56 @@ describe('Message', function () {
   var agent = new apnagent.MockAgent()
     , Message = __apn.Message;
 
-  it('can set custom variables', function () {
-    var msg = new Message()
-      , res = msg.set('answer', 42);
-    msg.should.have.property('payload')
-      .an('object').with.property('answer', 42);
-    res.should.deep.equal(msg);
+  describe('.set()', function () {
+    it('should set key/value pairs', function () {
+      var msg = new Message()
+        , res = msg.set('answer', 42);
+
+      msg.should
+        .have.property('payload')
+        .an('object')
+        .that.deep.equals({ answer: 42 });
+      res.should.deep.equal(msg);
+    });
+
+    it('should set object', function () {
+      var msg = new Message()
+        , res = msg.set({ answer: 42, who: 'deep thought' });
+
+      msg.should
+        .have.property('payload')
+        .an('object')
+        .that.deep.equals({
+            answer: 42
+          , who: 'deep thought'
+        });
+      res.should.deep.equal(msg);
+    });
   });
 
-  it('can set badge', function () {
-    var msg = new Message()
-      , res = msg.badge(42);
-    msg.should.have.property('settings')
-      .and.have.property('badge', 42);
-    res.should.deep.equal(msg);
+  describe('.badge()', function () {
+    it('should set badge', function () {
+      var msg = new Message()
+        , res = msg.badge(42);
+      msg.should.have.property('settings')
+        .and.have.property('badge', 42);
+      res.should.deep.equal(msg);
+    });
   });
 
-  it('can set sound', function () {
-    var msg = new Message()
-      , res = msg.sound('bell');
-    msg.should.have.property('settings')
-      .and.have.property('sound', 'bell');
-    res.should.deep.equal(msg);
+  describe('.sound()', function () {
+    it('should set sound', function () {
+      var msg = new Message()
+        , res = msg.sound('bell');
+      msg.should
+        .have.property('settings')
+        .and.have.property('sound', 'bell');
+      res.should.deep.equal(msg);
+    });
   });
 
   describe('.alert()', function () {
-    it('can set key/value pairs', function () {
+    it('should set key/value pairs', function () {
       var msg = new Message();
       msg
         .alert('body', 'Hello Universe')
@@ -51,7 +75,7 @@ describe('Message', function () {
       });
     });
 
-    it('can set object', function () {
+    it('should set object', function () {
       var msg = new Message();
 
       msg.alert({
@@ -76,14 +100,14 @@ describe('Message', function () {
   });
 
   describe('.device()', function () {
-    it('can set as buffer', function () {
+    it('should set as buffer', function () {
       var msg = new Message()
         , res = msg.device(device);
       msg.meta.device.toString().should.equal(device.toString('hex'));
       res.should.deep.equal(msg);
     });
 
-    it('can set as string', function () {
+    it('should set as string', function () {
       var msg = new Message()
         , res = msg.device(sample_token);
       msg.meta.device.toString().should.equal(device.toString('hex'));
@@ -101,7 +125,7 @@ describe('Message', function () {
       , 'need to understand what a notification is.'
     ].join(' ');
 
-    it('can get payload when only alert body', function () {
+    it('should get payload when only alert body', function () {
       var msg = new Message();
 
       msg
@@ -124,7 +148,7 @@ describe('Message', function () {
       });
     });
 
-    it('can get payload for complex alert', function () {
+    it('should get payload for complex alert', function () {
       var msg = new Message();
 
       msg
@@ -153,7 +177,7 @@ describe('Message', function () {
       });
     });
 
-    it('can truncate when only alert body', function () {
+    it('should truncate when only alert body', function () {
       var msg = new Message();
 
       msg
@@ -182,7 +206,7 @@ describe('Message', function () {
       });
     });
 
-    it('can truncate for complex alert body', function () {
+    it('should truncate for complex alert body', function () {
       var msg = new Message();
 
       msg
@@ -214,7 +238,7 @@ describe('Message', function () {
       });
     });
 
-    it('will throw when too long w/ only alert body', function () {
+    it('should throw when too long w/ only alert body', function () {
       var msg = new Message();
 
       msg
@@ -228,7 +252,7 @@ describe('Message', function () {
       }).should.throw('Message too long.');
     });
 
-    it('will throw when too long w/ complex alert body', function () {
+    it('should throw when too long w/ complex alert body', function () {
       var msg = new Message();
 
       msg
@@ -243,7 +267,7 @@ describe('Message', function () {
       }).should.throw('Message too long.');
     });
 
-    it('will throw when device not specified', function () {
+    it('should throw when device not specified', function () {
       var msg = new Message();
 
       (function () {
@@ -251,7 +275,7 @@ describe('Message', function () {
       }).should.throw('Message device not specified.');
     });
 
-    it('will throw when codec enhanced and no expiration', function () {
+    it('should throw when codec enhanced and no expiration', function () {
       var msg = new Message(null, 'enhanced');
 
       msg.device('feedface');
@@ -261,7 +285,7 @@ describe('Message', function () {
       }).should.throw('Message expiration not specified for enhanced codec delivery.');
     });
 
-    it('will throw when codec enhanced and no agent', function () {
+    it('should throw when codec enhanced and no agent', function () {
       var msg = new Message(null, 'enhanced');
 
       msg
