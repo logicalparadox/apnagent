@@ -1,15 +1,16 @@
 TESTS = test/*.js
-REPORTER = spec
+REPORTER = dot
+TIMEOUT = 10000
 
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 		--require ./test/bootstrap \
 		--reporter $(REPORTER) \
-		--timeout 10000 \
+		--timeout $(TIMEOUT) \
 		$(TESTS)
 
 test-cov: lib-cov
-	@PCRYPT_COV=1 $(MAKE) test REPORTER=html-cov > coverage.html
+	@APNAGENT_COV=1 $(MAKE) test REPORTER=html-cov > coverage.html
 
 lib-cov: clean
 	@jscoverage lib lib-cov
