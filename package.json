@@ -36,6 +36,7 @@
       , "tea-error": "0.1.x"
       , "tea-extend": "0.2.x"
       , "tea-inherits": "0.1.x"
+      , "tea-ms": "0.1.x"
       , "sherlock": "*"
     }
   , "devDependencies": {
