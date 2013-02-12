@@ -1,5 +1,5 @@
 
-module.exports = function (Agent, key, cert) {
+module.exports = function (Agent, key, cert, live) {
 
   function newAgent () {
     var agent = new Agent();
@@ -26,6 +26,28 @@ module.exports = function (Agent, key, cert) {
       i = agent.nextId();
       i.should.equal(0);
       agent.lastId.should.equal(0);
+    });
+  });
+
+  describe('.createMessage()', function () {
+    it('should return a new Message', function () {
+      var agent = newAgent()
+        , msg = agent.createMessage();
+      msg.should.be.instanceof(__apnagent.Message);
+    });
+
+    it('should default to enhanced codec', function () {
+      var agent = newAgent()
+        , msg = agent.createMessage();
+      agent.get('codec').should.equal('enhanced');
+      msg.meta.should.have.property('codec', 'enhanced');
+    });
+
+    it('should default to 0 expiration', function () {
+      var agent = newAgent()
+        , msg = agent.createMessage();
+      agent.get('expires').should.equal(0);
+      msg.meta.should.have.property('expires', 0);
     });
   });
 }
