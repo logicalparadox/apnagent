@@ -1,6 +1,7 @@
 describe('MockAgent', function () {
+  var live = function (fn) { return fn; };
 
-  require('./common/agent')(apnagent.MockAgent, null, null);
+  require('./common/agent')(apnagent.MockAgent, null, null, live);
 
   describe('.connect()', function () {
     it('should be able to connect', function (done) {

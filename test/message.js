@@ -3,7 +3,7 @@ describe('Message', function () {
     , device = new Buffer(sample_token.replace(/\s/g, ''), 'hex');
 
   var agent = new apnagent.MockAgent()
-    , Message = __apn.Message;
+    , Message = __apnagent.Message;
 
   describe('.set()', function () {
     it('should set key/value pairs', function () {

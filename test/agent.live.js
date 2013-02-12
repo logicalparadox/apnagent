@@ -2,18 +2,24 @@ var exists = require('fs').existsSync
   , join = require('path').join
   , read = require('fs').readFileSync;
 
-var cert = join(__dirname, 'certs/apnagent-cert.pem')
-  , key = join(__dirname, 'certs/apnagent-key-noenc.pem');
+var cert, key;
+
+if (process.env.APNAGENT_LIVE) {
+  cert = join(__dirname, 'certs/apnagent-cert.pem');
+  key = join(__dirname, 'certs/apnagent-key-noenc.pem');
+} else {
+  key = join(__dirname, 'noop');
+  cert = join(__dirname, 'noop');
+}
 
 describe('Agent', function () {
   var live = function (fn) { return fn; };
 
-  require('./common/agent')(apnagent.Agent, key, cert);
-
   if (!exists(cert) || !exists(key)) {
     live = function (fn) { return null; };
-    //it('skipping live agent tests. cert/key files missing.');
   }
+
+  require('./common/agent')(apnagent.Agent, key, cert, live);
 
   describe('.connect()', function () {
     it('should be able to connect', live(function (done) {

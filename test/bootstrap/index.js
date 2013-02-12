@@ -9,6 +9,6 @@ function req (name) {
     : require('../../lib/apnagent/' + name);
 }
 
-global.__apn = {
+global.__apnagent = {
     Message: req('message')
 }
