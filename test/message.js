@@ -1,17 +1,9 @@
-var sample_token = '5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf8d 3d5524c6'
-  , device = new Buffer(sample_token.replace(/\s/g, ''), 'hex');
-
 describe('Message', function () {
+  var sample_token = '5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf8d 3d5524c6'
+    , device = new Buffer(sample_token.replace(/\s/g, ''), 'hex');
+
   var agent = new apnagent.MockAgent()
     , Message = __apn.Message;
-
-  it('can be constructed', function () {
-    var msg = new Message(agent)
-      , msg2 = new Message(agent);
-    msg.should.have.property('encoding', 'utf8');
-    msg.should.have.property('id', 0);
-    msg2.should.have.property('id', 1);
-  });
 
   it('can set custom variables', function () {
     var msg = new Message()
@@ -37,8 +29,7 @@ describe('Message', function () {
     res.should.deep.equal(msg);
   });
 
-  describe('alert', function () {
-
+  describe('.alert()', function () {
     it('can set key/value pairs', function () {
       var msg = new Message();
       msg
@@ -82,10 +73,9 @@ describe('Message', function () {
         , 'launch-image': 'img.png'
       });
     });
-
   });
 
-  describe('device', function () {
+  describe('.device()', function () {
     it('can set as buffer', function () {
       var msg = new Message()
         , res = msg.device(device);
@@ -167,7 +157,7 @@ describe('Message', function () {
       var msg = new Message();
 
       msg
-        .device('00')
+        .device('feedface')
         .set('custom', 'variable')
         .alert('body', longBody)
         .badge(1);
@@ -228,6 +218,7 @@ describe('Message', function () {
       var msg = new Message();
 
       msg
+        .device('feedface')
         .set('custom_body', longBody)
         .alert('body', 'Hello Universe')
         .badge(1);
@@ -241,6 +232,7 @@ describe('Message', function () {
       var msg = new Message();
 
       msg
+        .device('feedface')
         .set('custom_body', longBody)
         .alert('body', 'Hello Universe')
         .alert('launch-image', 'img.png')
@@ -251,5 +243,34 @@ describe('Message', function () {
       }).should.throw('Message too long.');
     });
 
+    it('will throw when device not specified', function () {
+      var msg = new Message();
+
+      (function () {
+        msg.serialize();
+      }).should.throw('Message device not specified.');
+    });
+
+    it('will throw when codec enhanced and no expiration', function () {
+      var msg = new Message(null, 'enhanced');
+
+      msg.device('feedface');
+
+      (function () {
+        msg.serialize();
+      }).should.throw('Message expiration not specified for enhanced codec delivery.');
+    });
+
+    it('will throw when codec enhanced and no agent', function () {
+      var msg = new Message(null, 'enhanced');
+
+      msg
+        .device('feedface')
+        .expires('1d');
+
+      (function () {
+        msg.serialize();
+      }).should.throw('Message agent not specified for enhanced codec delivery.');
+    });
   });
 });
