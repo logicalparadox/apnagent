@@ -1,4 +1,3 @@
-
 describe('Cache', function () {
   var Cache = __apnagent.Cache;
 
@@ -125,12 +124,12 @@ describe('Cache', function () {
 
   describe('.resume()', function () {
     it('should clean objects older than ttl', function (done) {
-      var cache = new Cache(15)
+      var cache = new Cache(50)
         , now = new Date().getTime();
 
       cache.push('one', 'a', now);
-      cache.push('two', 'b', now + 9);
-      cache.push('three', 'c', now + 18);
+      cache.push('two', 'b', now + 25);
+      cache.push('three', 'c', now + 75);
 
       cache.should.have.lengthOf(3);
 
@@ -141,14 +140,14 @@ describe('Cache', function () {
       }
 
       time(10, 3);
-      time(20, 2);
-      time(32, 1);
-      time(50, 0);
+      time(75, 2);
+      time(125, 1);
+      time(175, 0);
 
       setTimeout(function () {
         cache.pause();
         done();
-      }, 55);
+      }, 200);
 
       cache.resume();
     });
@@ -156,12 +155,12 @@ describe('Cache', function () {
 
   describe('.pause()', function () {
     it('should pause ttl cleaning', function (done) {
-      var cache = new Cache(15)
+      var cache = new Cache(50)
         , now = new Date().getTime();
 
       cache.push('one', 'a', now);
-      cache.push('two', 'b', now + 9);
-      cache.push('three', 'c', now + 18);
+      cache.push('two', 'b', now + 25);
+      cache.push('three', 'c', now + 75);
 
       cache.should.have.lengthOf(3);
 
@@ -172,17 +171,17 @@ describe('Cache', function () {
       }
 
       time(10, 3);
-      time(20, 2);
-      time(32, 1);
-      time(50, 1);
+      time(75, 2);
+      time(125, 1);
+      time(175, 1);
 
       setTimeout(function () {
         cache.pause();
-      }, 33);
+      }, 135);
 
       setTimeout(function () {
         done();
-      }, 55)
+      }, 200)
 
       cache.resume();
     });
