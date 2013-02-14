@@ -1,6 +1,8 @@
 global.chai = require('chai');
 global.should = chai.should();
 
+global.chai.use(require('chai-spies'));
+
 global.apnagent = require('../..');
 
 function req (name) {
@@ -10,5 +12,6 @@ function req (name) {
 }
 
 global.__apnagent = {
-    Message: req('message')
+    Cache: req('cache')
+  , Message: req('message')
 }
