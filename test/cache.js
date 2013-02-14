@@ -1,5 +1,5 @@
 
-describe.only('Cache', function () {
+describe('Cache', function () {
   var Cache = __apnagent.Cache;
 
   describe('.push', function () {
