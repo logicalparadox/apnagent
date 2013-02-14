@@ -29,7 +29,7 @@
       "test": "make test"
     }
   , "dependencies": {
-        "breeze-queue": "0.2.x"
+        "breeze-queue": "0.3.x"
       , "drip": "1.1.x"
       , "facet": "0.3.x"
       , "lotus": "0.4.x"
