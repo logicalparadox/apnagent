@@ -135,7 +135,7 @@ describe('Cache', function () {
 
       function time (ms, n) {
         setTimeout(function () {
-          cache.should.have.lengthOf(n);
+          cache.length.should.be.above(n - 1);
         }, ms);
       }
 
@@ -166,7 +166,7 @@ describe('Cache', function () {
 
       function time (ms, n) {
         setTimeout(function () {
-          cache.should.have.lengthOf(n);
+          cache.length.should.be.above(n-1);
         }, ms);
       }
 
