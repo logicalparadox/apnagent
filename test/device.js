@@ -1,9 +1,10 @@
-var sample_token = '5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf8d 3d5524c6'
-  , sample_device = new Buffer(sample_token.replace(/\s/g, ''), 'hex');
-
-var Device = apnagent.Device;
-
 describe('Device', function () {
+  var re = /[^a-z0-9]/gi
+    , sample_token = '<5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf8d 3d5524c6>'
+    , sample_device = new Buffer(sample_token.replace(re, ''), 'hex');
+
+  var Device = apnagent.Device;
+
   describe('.toBuffer()', function () {
     it('should return a buffer', function () {
       var device = new Device(sample_token);
@@ -18,7 +19,7 @@ describe('Device', function () {
       var device = new Device(sample_device);
       device.toString()
         .should.be.a('string')
-        .and.equal(sample_token.replace(/\s/g, ''));
+        .and.equal('5b51030dd5bad758fbad5004bad35c31e4e0f550f77f20d4f737bf8d3d5524c6');
     });
   });
 
