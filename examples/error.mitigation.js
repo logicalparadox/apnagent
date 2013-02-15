@@ -21,7 +21,7 @@ var cert, key, device;
 try {
   cert = fs.readFileSync(join(__dirname, '../test/certs/apnagent-cert.pem'));
   key = fs.readFileSync(join(__dirname, '../test/certs/apnagent-key-noenc.pem'));
-  device = fs.readFileSync(join(__dirname, '../test/certs/device.txt'), 'utf8').replace(/\n/, '');
+  device = fs.readFileSync(join(__dirname, '../test/certs/device.txt'), 'utf8');
 } catch (ex) {
   console.error('Error loading key/cert/device: %s', ex.message);
   process.exit(1);
