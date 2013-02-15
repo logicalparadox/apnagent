@@ -1,4 +1,52 @@
 
+0.4.0 / 2013-02-15 
+==================
+
+  * example: [error.mitigation] remove trim for device
+  * device: improve string regexp to remove all non-alphanumeric
+  * message: [alert] if only key, set as body
+  * message: [device] allow device constructor as set
+  * agent: [close] refactor to wait for queue to finish current
+  * pgk: update breeze-queue to 0.4.x
+  * message: [expires] do unix calculation on set, no serialize
+  * Merge branch 'feature/cache'
+  * agent: [mock] fix reference errors
+  * examples: [error.mitigation] refactor to handle different situations
+  * agent: [all] implement cache mechanism
+  * test: [cache] increase fuzziness of timing
+  * message: [device] if no args, return device
+  * code: [gateway response] change status to code.
+  * errors: add GatewayNotificationError for apn response errors
+  * test: [cache] increase test delays for more leighway
+  * codecs: [gateway.response] add gateway response codec
+  * cache: store settings on self
+  * pgk: [breeze-queue] update to 0.3.x
+  * test: resume running all tests
+  * test: [cache] add tests for cache constructor
+  * cache: add the cache constructor
+  * examples: [basic] load key from certs folder
+  * agent: [live] remove extraneous console logs"
+  * message: fix bug preventing 0 expires to proceed
+  * Merge branch 'refactor/defaultEnhanced'
+  * makefile: turn live tests off by default
+  * test: refactor tests for default enhanced codec
+  * message/agent: [codec] make enhanced the default codec
+  * test: better naming structure
+  * test: [message] increase setters test coverage
+  * message: clean up setters
+  * docs: note that ios project can be used with tests
+  * makefile: allow for custom timeouts
+  * Merge branch 'feature/expires'
+  * test: [message] add exiration tests
+  * message: add support for expiration, enabling enhanced codec
+  * dpes: add tea-ms
+  * Merge branch 'feature/device'
+  * test: [message] refactor to use Device constructor
+  * message: refactor to use Device constructor
+  * test: [device] add device tests
+  * device: add device constructor
+  * deps: update lotus to 0.4.x
+
 0.3.1 / 2013-01-27 
 ==================
 
