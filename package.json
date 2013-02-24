@@ -29,7 +29,8 @@
       "test": "make test"
     }
   , "dependencies": {
-        "breeze-queue": "0.4.x"
+        "breeze-async": "0.1.x"
+      , "breeze-queue": "0.4.x"
       , "drip": "1.1.x"
       , "facet": "0.3.x"
       , "lotus": "0.4.x"
