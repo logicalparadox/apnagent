@@ -16,7 +16,7 @@ module.exports = function (Agent, key, cert, live) {
         , i2 = agent.nextId();
       i1.should.equal(0);
       i2.should.equal(1);
-      agent.lastId.should.equal(1);
+      agent.meta.lastId.should.equal(1);
     });
 
     it('should reset to 0 when exceeds int32', function () {
@@ -25,7 +25,7 @@ module.exports = function (Agent, key, cert, live) {
       agent.lastId = 4294967296;
       i = agent.nextId();
       i.should.equal(0);
-      agent.lastId.should.equal(0);
+      agent.meta.lastId.should.equal(0);
     });
   });
 
