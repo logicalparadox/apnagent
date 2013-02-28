@@ -46,15 +46,15 @@ agent
  * Listen for send errors
  */
 
-agent.on('notification:error', function (err, msg) {
+agent.on('message:error', function (err, msg) {
   switch (err.name) {
-    case 'GatewayNotificationError':
-      console.log('  [emitted] notification error: %s', err.message);
+    case 'GatewayMesssageError':
+      console.log('  [emitted] gw notification error: %s', err.message);
       if (err.code === 8) {
         console.log('    > %s', msg.device().toString());
       }
       break;
-    case 'SerializationError':
+    case 'MessageSerializationError':
       console.log('  [emitted] serialization error: %s', err.message);
       break;
     default:
