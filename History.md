@@ -1,4 +1,30 @@
 
+0.5.0 / 2013-02-28 
+==================
+
+  * readme: update feature set
+  * examples: refactor with new error names
+  * errors: normalize naming convention
+  * agent: [base] incoming errors emitted as message:error
+  * agent: [base] send emits message error, not notification error
+  * agent: [base] required methods throw instead of respond
+  * agent: store lastId and gatewayError in meta storage
+  * agent: [live] connect returns this
+  * tests: turn all tests back on
+  * Merge branch 'feature/feedback'
+  * feedback: [mock] add tests
+  * feedback: finish base/live/mock implementation
+  * codec: [feedback.response] add write definition
+  * examples: [feedback] add basic feedback example
+  * feedback: add base, mock, live feedback agents
+  * codec: [feedback] add feedback response codec
+  * pkg: add breeze-async dep
+  * errors: add feedback auth error
+  * util: add feedback options parser to utils
+  * feedback: [base] add default settings and methods
+  * feedback: add constructors
+  * agent: [iterator] check for connection after encoder data
+
 0.4.0 / 2013-02-15 
 ==================
 
