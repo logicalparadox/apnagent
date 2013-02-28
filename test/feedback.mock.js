@@ -1,4 +1,4 @@
-describe.only('MockFeedback', function () {
+describe('MockFeedback', function () {
 
 
   describe('.connect()', function () {
