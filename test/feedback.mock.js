@@ -1,5 +1,7 @@
 describe('MockFeedback', function () {
+  var live = function (fn) { return fn; };
 
+  require('./common/feedback')(apnagent.MockFeedback, null, null, live);
 
   describe('.connect()', function () {
     it('should be able to connect', function (done) {
