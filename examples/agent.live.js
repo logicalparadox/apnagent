@@ -9,23 +9,9 @@
  */
 
 var apnagent = require('..')
-  , fs = require('fs')
-  , join = require('path').join;
-
-/*!
- * Load cert, key, and valid device
- */
-
-var cert, key, device;
-
-try {
-  cert = fs.readFileSync(join(__dirname, '../test/certs/apnagent-cert.pem'));
-  key = fs.readFileSync(join(__dirname, '../test/certs/apnagent-key-noenc.pem'));
-  device = fs.readFileSync(join(__dirname, '../test/certs/device.txt'), 'utf8');
-} catch (ex) {
-  console.error('Error loading key/cert/device: %s', ex.message);
-  process.exit(1);
-}
+  , settings = require('./_header')
+    , auth = settings.auth
+    , device = settings.device;
 
 /**
  * Construct Agent
@@ -38,9 +24,18 @@ var agent = new apnagent.Agent();
  */
 
 agent
-  .set('cert', cert)
-  .set('key', key)
-  .enable('sandbox');
+.set(auth)
+.enable('sandbox')
+.connect(function (err) {
+  if (err && 'GatewayAuthorizationError' === err.name) {
+    console.log('%s: %s', err.name, err.message);
+    process.exit(1);
+  } else if (err) {
+    throw err;
+  } else {
+    console.log('gateway connected');
+  }
+});
 
 /**
  * Listen for send errors
@@ -65,7 +60,7 @@ agent.on('message:error', function (err, msg) {
 
 /**
  * This message will error because the device is
- * not valid. It will invoke the `notification:error`
+ * not valid. It will invoke the `message:error`
  * listener. The `.send()` callback will NOT have an error.
  */
 
@@ -84,7 +79,7 @@ agent.createMessage()
  */
 
 agent.createMessage()
-  .device('facefeed')
+  .device(device)
   .set('custom', new Array(1000).join(' '))
   .send(function (err) {
     if (err) console.log('  [cb] serialization error: %s', err.message);
@@ -103,9 +98,3 @@ agent.createMessage()
   .send(function (err) {
     if (err) console.log('  [cb] If you se me something went terribly wrong.');
   });
-
-/**
- * Start the service.
- */
-
-agent.connect();
