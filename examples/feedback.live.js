@@ -36,7 +36,7 @@ feedback
   } else if (err) {
     throw err;
   } else {
-    console.log('feedback connected');
+    console.log('feedback running');
   }
 });
 

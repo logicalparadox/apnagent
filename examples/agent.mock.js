@@ -1,41 +1,41 @@
 /*!
  * This example demonstrates apnagent's ability
- * to connect to the apn gateway and send messages.
+ * to connect to [mock] apn gateway and send messages.
  *
- * This examples requires certificates and a valid device.
+ * This example does NOT require certificates or a valid device.
  */
 
 /*!
  * Module dependencies
  */
 
-var apnagent = require('..')
-  , settings = require('./_header')
-    , auth = settings.auth
-    , device = settings.device;
+var apnagent = require('..');
 
 /**
  * Construct Agent
  */
 
-var agent = new apnagent.Agent();
+var agent = new apnagent.MockAgent();
 
 /**
  * Provide settings
  */
 
-agent
-.set(auth)
-.enable('sandbox')
-.connect(function (err) {
-  if (err && 'GatewayAuthorizationError' === err.name) {
-    console.log('%s: %s', err.name, err.message);
-    process.exit(1);
-  } else if (err) {
-    throw err;
-  } else {
-    console.log('gateway connected');
-  }
+agent.connect(function (err) {
+  if (err) throw err; // this shouldn't happen
+  console.log('[mock] gateway connected');
+});
+
+/**
+ * Mock Only: Log messages that have been sent.
+ */
+
+agent.on('mock:message', function (raw) {
+  var device = new apnagent.Device(raw.deviceToken)
+    , payload = JSON.parse(raw.payload.toString());
+  console.log('');
+  console.log('==> %d - %s', raw.identifier, device.toString());
+  console.log(JSON.stringify(payload, null, 2));
 });
 
 /**
@@ -47,7 +47,7 @@ agent.on('message:error', function (err, msg) {
     case 'GatewayMesssageError':
       console.log('[emitted] gw notification error: %s', err.message);
       if (err.code === 8) {
-        console.log('  > %s', msg.device().toString());
+        console.log('    > %s', msg.device().toString());
       }
       break;
     case 'MessageSerializationError':
@@ -60,13 +60,12 @@ agent.on('message:error', function (err, msg) {
 });
 
 /**
- * This message will error because the device is
- * not valid. It will invoke the `message:error`
- * listener. The `.send()` callback will NOT have an error.
+ * Unlike the live counterpart, `feedface` is a valid token.
+ * Therefor, this message will simulate a send.
  */
 
 agent.createMessage()
-  .device('feedface')
+  .device('feedface00')
   .alert('body', 'Hello Universe')
   .send(function (err) {
     if (err) console.log('[cb] If you se me something went terribly wrong.');
@@ -80,21 +79,18 @@ agent.createMessage()
  */
 
 agent.createMessage()
-  .device(device)
+  .device('feedface01')
   .set('custom', new Array(1000).join(' '))
   .send(function (err) {
     if (err) console.log('[cb] serialization error: %s', err.message);
   });
 
 /**
- * This message will NOT error because everything
- * is valid. If it emits a `notification:error` it
- * is likely because you don't have the client app
- * set up correctly or your not using a valid token.
+ * This message will NOT error because everything is valid.
  */
 
 agent.createMessage()
-  .device(device)
+  .device('feedface02')
   .alert('body', 'Hello Universe')
   .badge(3)
   .send(function (err) {
