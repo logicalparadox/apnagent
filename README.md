@@ -1,4 +1,4 @@
-# APN Agent [![Build Status](https://travis-ci.org/logicalparadox/apnagent.png?branch=master)](https://travis-ci.org/logicalparadox/apnagent)
+# APN Agent [![Build Status](https://travis-ci.org/qualiancy/apnagent.png?branch=master)](https://travis-ci.org/qualiancy/apnagent)
 
 > Node adapater for Apple Push Notification (APN) Service.
 
@@ -27,7 +27,7 @@
 
 (The MIT License)
 
-Copyright (c) 2012-2013 Jake Luer <jake@alogicalparadox.com>
+Copyright (c) 2012-2013 Jake Luer <jake@qualiancy.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

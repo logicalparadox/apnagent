@@ -2,11 +2,11 @@
     "name": "apnagent"
   , "version": "0.5.0"
   , "description": "Node adapter for Apple Push Notification (APN) Service."
-  , "author": "Jake Luer <jake@alogicalpardox.com> (http://alogicalparadox.com)"
+  , "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)"
   , "license": "MIT"
+  , "homepage": "http://apnagent.qualiancy.com"
   , "contributors": [
-        "Jake Luer <jake@alogicalparadox.com>"
-      , "Veselin Todorov <hi@vesln.com>"
+      "Jake Luer <jake@qualiancy.com>"
     ]
   , "keywords": [
         "apn"
@@ -19,7 +19,10 @@
     ]
   , "repository": {
         "type": "git"
-      , "url": "git@github.com:logicalparadox/apnagent.git"
+      , "url": "git@github.com:qualiancy/apnagent.git"
+    }
+  , "bugs": {
+      "url": "https://github.com/qualiancy/apnagent/issues"
     }
   , "engines": {
       "node": ">= 0.8.0"
