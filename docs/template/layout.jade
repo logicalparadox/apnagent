@@ -1,0 +1,47 @@
+!!!5
+html(lang='en')
+  head
+    title= file.title
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js')
+    script(src=site.ghbaseurl + '/public/js/main.js')
+    link(rel='stylesheet', href=site.ghbaseurl + '/public/css/main.css', type='text/css', media='all')
+    - if (site.mixpanel)
+      script(type='text/javascript')
+        var mpq = [];
+        mpq.push(["init", "#{site.mixpanel}"]);
+        (function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";
+        b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+
+        "//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push(
+        [f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links",
+        "track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<
+        d.length;c++){mpq[d[c]]=e(d[c])}})();
+    - if (site.googleanalytics)
+      script(type='text/javascript')
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '#{site.googleanalytics}']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+  body
+    .wrapper
+      header
+        block header
+        nav
+          block nav
+            ul.pages
+              li: a(href="/") Home
+              - if (files.pages)
+                for page in files.pages
+                  li: a(href=page.href)= page.title
+      section#content
+        block content
+          .wrap!= file.prepared
+        footer
+          block footer
+            a.qual(href='http://qualiancy.com')
+              img.qlogo(src='http://qualiancy.com/img/qualiancy-logo.png')
+

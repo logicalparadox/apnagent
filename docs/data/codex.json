@@ -1,0 +1,36 @@
+{
+    "locals": {
+        "title": "apnagent"
+      , "googleanalytics": "UA-28369129-3"
+      , "mixpanel": ""
+      , "ghuser": "qualiancy"
+      , "ghbaseurl": ""
+      , "ghproject": "apnagent"
+      , "description": "Node.js adapter for Apple Push Notification (APN) service."
+    }
+
+  , "plugins": [
+    { "name": "code"
+    , "files": [
+        { "name": "index"
+        , "title": "Agent"
+        , "file": "../../lib/apnagent/agent/base.js"
+        , "description": ":)"
+        , "template": "index"
+        , "render-file": false }
+      , { "name": "index"
+        , "title": "Device"
+        , "file": "../../lib/apnagent/device.js"
+        , "description": ":)"
+        , "template": "index"
+        , "render-file": false }
+      , { "name": "index"
+        , "title": "Message"
+        , "file": "../../lib/apnagent/message.js"
+        , "description": ":)"
+        , "template": "index"
+        , "render-file": false }
+      ]
+    }
+  ]
+}

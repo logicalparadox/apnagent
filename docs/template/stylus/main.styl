@@ -1,0 +1,153 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+@import url(https://fonts.googleapis.com/css?family=Oxygen);
+
+@import 'nib'
+@import 'fez'
+
+global-reset()
+fez-reset()
+
+colorfg = #FA2A00
+colorbg = #fff
+colorhref = red
+
+coloraccent = #285F62
+
+body
+  font 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-weight 300
+  padding 50px
+  background-color colorbg
+  color #333
+
+h1, h2
+  font-family 'Oxygen', sans-serif 
+  color #333
+  a
+    color #333
+
+h2
+  margin-top 30px
+  padding-bottom 10px
+  border-bottom 1px solid #333
+  color #333
+
+h3, h4, h5, h6
+  color #333
+
+h3
+  color coloraccent
+  font-weight bold
+
+a
+  color colorhref
+  text-decoration none
+
+a.fork
+  display block
+  background linear-gradient(top ,lighten(colorfg, 10%), colorfg)
+  box-shadow 1px 1px 5px rgba(0,0,0,30%)
+  border 1px solid darken(colorfg, 20%)
+  color #fff
+  margin-top 30px
+  margin-bottom 30px
+  padding 10px
+  border-radius 5px
+  text-shadow 1px 1px 0px darken(colorfg, 30%)
+
+  &:hover
+    background linear-gradient(top ,lighten(colorfg, 20%), lighten(colorfg, 10%))
+
+  h2
+    border-bottom 0px
+    margin 0px
+    color #fff
+    padding 0px
+  .project
+    font-size 16px
+
+em
+  font-style italic
+
+strong
+  font-weight bold
+  
+code, pre
+  font-family Consolas,Menlo,"Liberation Mono",Courier,monospace
+  color #666
+  font-size 12px
+
+ul
+  margin-bottom 1.5em
+  list-style disc
+  padding-left 40px
+
+pre
+  padding 8px 15px
+  overflow-x auto
+  background #fff // #F8F8F8
+  margin-bottom 1.5em
+  border 1px solid lighten(#333, 85%)
+  border-radius 5px
+
+.segment
+  margin-bottom 60px 
+  position relative
+
+  .para
+    position absolute
+    left -20px
+    font-size 14px
+    width 20px
+    display none
+    opacity 0
+    a
+      color colorhref
+
+ul.tags
+  font-size 12px
+  li.tag
+    span
+      margin-right 5px
+    span.type
+      font-weight bold
+    span.types
+      font-style italic
+
+.wrapper
+  width 860px
+  margin 0px auto
+
+header
+  width 270px
+  float left
+  position fixed
+  text-align right
+
+section#content
+  width 500px
+  padding-top 65px
+  float right
+
+nav
+  text-align right
+
+  .active
+    font-weight bold
+
+  .section
+    display none
+
+  .head > a
+    color #333
+  .section > a
+    color colorhref
+
+footer
+  a.qual
+    display block
+    .qlogo
+      display block
+      margin 100px auto
+
+@import 'code'

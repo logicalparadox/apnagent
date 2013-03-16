@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>apnagent</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="/public/js/main.js"></script>
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28369129-3']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="#top" class="scroll">apnagent</a></h1>
+        <div class="tagline"><p>Node.js adapter for Apple Push Notification (APN) service.</p>
+</div><a href="https://github.com/qualiancy/apnagent" class="fork">
+          <h2>View the Project on GitHub</h2>
+          <div class="project">qualiancy/apnagent</div></a>
+        <nav>
+          <div id="introduction" class="head"> <a href="#header-introduction" class="scroll">Introduction</a></div>
+          <div id="guide" class="head"><a href="#header-guide" class="scroll">Quick Start Guide</a></div>
+          <div id="installation" class="section guide"><a href="#guide-installation" class="scroll">Installation</a></div>
+          <div id="agent_&amp;_mockagent_api" class="head"><a href="#header-agent_&amp;_mockagent_api" class="scroll">Agent &amp; MockAgent API</a></div>
+          <div id="Settings" class="section agent_&amp;_mockagent_api"><a href="#agent_&amp;_mockagent_api-Settings" class="scroll">Settings</a></div>
+          <div id="Events" class="section agent_&amp;_mockagent_api"><a href="#agent_&amp;_mockagent_api-Events" class="scroll">Events</a></div>
+          <div id="create" class="section agent_&amp;_mockagent_api"><a href="#agent_&amp;_mockagent_api-create" class="scroll">create</a></div>
+          <div id="send" class="section agent_&amp;_mockagent_api"><a href="#agent_&amp;_mockagent_api-send" class="scroll">send</a></div>
+          <div id="device_api" class="head"><a href="#header-device_api" class="scroll">Device API</a></div>
+          <div id="toBuffer" class="section device_api"><a href="#device_api-toBuffer" class="scroll">toBuffer</a></div>
+          <div id="toString" class="section device_api"><a href="#device_api-toString" class="scroll">toString</a></div>
+          <div id="equal" class="section device_api"><a href="#device_api-equal" class="scroll">equal</a></div>
+          <div id="message_builder_api" class="head"><a href="#header-message_builder_api" class="scroll">Message Builder API</a></div>
+          <div id="alert" class="section message_builder_api"><a href="#message_builder_api-alert" class="scroll">alert</a></div>
+          <div id="set" class="section message_builder_api"><a href="#message_builder_api-set" class="scroll">set</a></div>
+          <div id="device" class="section message_builder_api"><a href="#message_builder_api-device" class="scroll">device</a></div>
+          <div id="expires" class="section message_builder_api"><a href="#message_builder_api-expires" class="scroll">expires</a></div>
+          <div id="badge" class="section message_builder_api"><a href="#message_builder_api-badge" class="scroll">badge</a></div>
+          <div id="sound" class="section message_builder_api"><a href="#message_builder_api-sound" class="scroll">sound</a></div>
+          <div id="send" class="section message_builder_api"><a href="#message_builder_api-send" class="scroll">send</a></div>
+          <div id="resources" class="head"><a href="#header-resources" class="scroll">Resources</a></div>
+        </nav>
+      </header>
+      <section id="content">
+        <div id="header-introduction" class="segment">
+          <div class="para"><a href="#header-introduction">&para;</a></div>
+          <div class="description"><h4>Features</h4>
+<ul>
+<li>chainable message builder</li>
+<li>persistent connection management</li>
+<li>apn feedback service integration</li>
+<li>feature complete mock agents for local-only testing/development</li>
+</ul>
+</div>
+        </div>
+        <div id="header-guide" class="segment">
+          <div class="para"><a href="#header-guide">&para;</a></div>
+          <div class="description"><h2>Quick Start Guide</h2>
+</div>
+        </div>
+        <div id="guide-installation" class="segment">
+          <div class="para"><a href="#guide-installation">&para;</a></div>
+          <div class="description"><h3>Installation</h3>
+<h5>Node</h5>
+<p><code>apnagent</code> package is available through <a href="http://npmjs.org">npm</a>.
+
+</p>
+<pre><code class="lang-bash">npm install apnagent</code></pre>
+</div>
+        </div>
+        <div id="header-agent_&amp;_mockagent_api" class="segment">
+          <div class="para"><a href="#header-agent_&amp;_mockagent_api">&para;</a></div>
+          <div class="summary"><h2>Agent / MockAgent API</h2>
+</div>
+          <ul class="tags">
+          </ul>
+          <div class="description"><h4>Gateway Component</h4>
+<p>The gateway component represents the connection to the
+Apple Push Notification service. For the live agent it
+is a TLS socket and for the mock agent it is a writable
+stream.
+
+</p>
+<h4>Queue Component</h4>
+<p>The queue component stores outgoing messages until the socket is
+ready to written. Messages are serialized before being placed in
+the queue.
+
+</p>
+<h4>Cache Component</h4>
+<p>The cache component maintains a limited ordered history of all outgoing messages
+should they need to be resent. If the APN service deems a message invalid
+it will not process any further message, respond with the unique ID and error
+code for the message that failed, then disconnect. The agent will use
+the cache to requeue messages that were sent after the failed message.
+
+</p>
+<p>To control memmory usage the cache employs a time-to-live (ttl) mechanism
+to remove items which are beyond a certain age and are therefor have
+presumably been processed by apple.
+</p>
+</div>
+        </div>
+        <div id="agent_&amp;_mockagent_api-Settings" class="segment">
+          <div class="para"><a href="#agent_&amp;_mockagent_api-Settings">&para;</a></div>
+          <div class="summary"><h3>Settings</h3>
+</div>
+          <ul class="tags">
+          </ul>
+          <div class="description"><p>Settings can be modified using <code>.set()</code>, <code>.enable()</code>, or <code>.disable()</code>
+and are chainable. For example:
+
+</p>
+<pre><code class="lang-js">agent
+  .set(<span class="string">'cert file'</span>, join(__dirname, <span class="string">'./certs/cert.pem'</span>)
+  .set(<span class="string">'key file'</span>, join(__dirname, <span class="string">'./certs/key.pem'</span>)
+  .enable(<span class="string">'sandbox'</span>);</code></pre>
+<h4>All Available Settings</h4>
+<ul>
+<li><p><strong>key</strong>, <strong>cert</strong>, <strong>ca</strong>, <strong>pfx</strong> <em>{Buffer}</em> - set the raw security
+credentials for connect to the APN service. These options are ignored
+by the <code>MockAgent</code>.</p>
+</li>
+<li><p><strong>key file</strong>, <strong>cert file</strong>, <strong>ca file</strong>, <strong>pfx file</strong> <em>{String}</em> - an
+alternative method to set security credentials for the APN service
+connection by filename. Must use full path. These options are ignored
+by the <code>MockAgent</code>.</p>
+</li>
+<li><p><strong>passphrase</strong> <em>{String}</em> - for use with certificates if they are secured
+with a password. This option ignored by <code>MockAgent</code>.</p>
+</li>
+<li><p><strong>sandbox</strong> <em>{Boolean}</em> - should agent connect to the APN sandbox
+environment (default <em>false</em>). This option is ignored by the <code>MockAgent</code>.</p>
+</li>
+<li><p><strong>reconnect</strong> <em>{Boolean}</em> - should agent reconnect on disconnect
+(default <em>true</em>). This should always be enabled for production
+environments.</p>
+</li>
+<li><p><strong>reconnect delay</strong> <em>{Number|String}</em> - milliseconds after a disconnect
+that a reconnect should be attempted (default: <code>3s</code>).</p>
+</li>
+<li><p><strong>cache ttl</strong> <em>{Number|String}</em> - time elapsed for a message where
+it should be considered successfully parsed by the APN service (default:
+<code>10m</code>).</p>
+</li>
+</ul>
+</div>
+        </div>
+        <div id="agent_&amp;_mockagent_api-Events" class="segment">
+          <div class="para"><a href="#agent_&amp;_mockagent_api-Events">&para;</a></div>
+          <div class="summary"><h3>Events</h3>
+</div>
+          <ul class="tags">
+          </ul>
+          <div class="description"><ul>
+<li><p><strong>gateway:connect</strong> - emitted every time a gateway connection
+is established. Since Apple closes the connection when it
+cannot process a message, this event may be emitted numerous
+times in an applications life-cycle.</p>
+</li>
+<li><p><strong>gateway:reconnect</strong> - emitted after a connection has been
+re-established after Apple had forcefully closed the connection.
+May be emitted numerous times in an application&#39;s life-cycle.</p>
+</li>
+<li><p><strong>gateway:error (err)</strong> - emitted if there is a client-side error with
+gateway. This includes authorization errors or TLS socket errors.
+An authorization error will be an instance of
+<code>apnagent.errors.GatewayAuthorizationError</code>.</p>
+</li>
+<li><p><strong>message:error (err)</strong> - emitted if Apple deems a message malformed for
+any given reason or if apnagent has an issues serialization an
+outgoing message.</p>
+</li>
+<li><p><strong>queue:flush</strong> - emitted when the queue has finished processessing
+all stored messages. May be emitted numerous times in the application&#39;s
+life-cycle.</p>
+</li>
+</ul>
+</div>
+        </div>
+        <div id="agent_&amp;_mockagent_api-create" class="segment">
+          <div class="para"><a href="#agent_&amp;_mockagent_api-create">&para;</a></div>
+          <div class="summary"><p>.create ()</p>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">encoding</span><span class="desc">(default: utf8)</span></li>
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">codec</span><span class="desc">(simple or enhanced)</span></li>
+          </ul>
+          <div class="description"><p>Creates a message that can be further modified
+through chaining.
+</p>
+</div>
+        </div>
+        <div id="default" class="segment">
+          <div class="para"><a href="#default">&para;</a></div>
+          <div class="summary"><p>.nextId ()</p>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;return</span><span class="desc"></span></li>
+          </ul>
+          <div class="description"><p>Increment the <code>lastId</code> used and return the new
+value. This will be called when a message is
+created with an agent attached.
+
+</p>
+<p>Since apple requires ids to be int32 compatible,
+if the last id exceeds 4294967296, it will be
+reset at zero.
+</p>
+</div>
+        </div>
+        <div id="agent_&amp;_mockagent_api-send" class="segment">
+          <div class="para"><a href="#agent_&amp;_mockagent_api-send">&para;</a></div>
+          <div class="summary"><p>.send (message)</p>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">apnsagent</span><span class="desc">message</span></li>
+          </ul>
+          <div class="description"><p>If connected, convert a message to buffer and send
+over the wire. If not currently connected, place
+the message in a queue for later departure.
+</p>
+</div>
+        </div>
+        <div id="header-device_api" class="segment">
+          <div class="para"><a href="#header-device_api">&para;</a></div>
+          <div class="summary"><h2>Device API</h2>
+</div>
+          <ul class="tags">
+          </ul>
+          <div class="description"><p>A small constructor to easily encapsulate a device
+token so it can be passed around and converted to
+whatever type is needed for given scenario.
+
+</p>
+<p>If a Device is constructed without parameters, a
+token can be assigned later by setting the <code>.token</code>
+property to either a string or buffer.
+
+</p>
+<p>The most common usage for the <code>Device</code> constructor
+is to sanitize a device token for storage in a database.
+
+</p>
+<pre><code class="lang-js"><span class="keyword">var</span> Device = require(<span class="string">'apnagent'</span>).Device
+  , device = <span class="keyword">new</span> Device(<span class="string">'&lt;a1b56d2c 08f621d8 7060da2b&gt;'</span>);</code></pre>
+</div>
+        </div>
+        <div id="device_api-toBuffer" class="segment">
+          <div class="para"><a href="#device_api-toBuffer">&para;</a></div>
+          <div class="summary"><h3>.toBuffer ()</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;return</span><span class="desc"></span></li>
+          </ul>
+          <div class="description"><p>Convert the stored device token to a buffer.
+
+</p>
+<pre><code class="lang-js"><span class="keyword">var</span> buf = device.toBuffer();</code></pre>
+</div>
+        </div>
+        <div id="device_api-toString" class="segment">
+          <div class="para"><a href="#device_api-toString">&para;</a></div>
+          <div class="summary"><h3>.toString ()</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;return</span><span class="desc"></span></li>
+          </ul>
+          <div class="description"><p>Convert the stored device token to a string.
+The string will be sanitized and thus not include
+spaces or extra characters.
+
+</p>
+<pre><code class="lang-js"><span class="keyword">var</span> str = device.toString();</code></pre>
+</div>
+        </div>
+        <div id="device_api-equal" class="segment">
+          <div class="para"><a href="#device_api-equal">&para;</a></div>
+          <div class="summary"><h3>.equal (device)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">instance</span><span class="desc">of Device, String, or Buffer</span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="desc"></span></li>
+          </ul>
+          <div class="description"><p>Compare the stored device token to another
+device, string, or buffer. Will also return false
+if both Devices do not have tokens associated with
+them.
+
+</p>
+<pre><code class="lang-js"><span class="comment">// testing string</span>
+device.equal(<span class="string">'a1b56d2c08f621d87060da2b'</span>).should.be.<span class="literal">true</span>;
+
+<span class="comment">// testing another device</span>
+<span class="keyword">var</span> dev2 = <span class="keyword">new</span> Device(<span class="string">'feedface'</span>);
+device.equal(dev2).should.be.<span class="literal">false</span>;</code></pre>
+</div>
+        </div>
+        <div id="header-message_builder_api" class="segment">
+          <div class="para"><a href="#header-message_builder_api">&para;</a></div>
+          <div class="summary"><h2>Message Builder API</h2>
+</div>
+          <ul class="tags">
+          </ul>
+          <div class="description"><p>A message encapsulates all data points that will
+be encoded and sent through the wire to APNS. The message
+builder is a chainable API that provides full feature
+coverage of the Apple Push Notification specifications.
+
+</p>
+<p>The preferred method of composing messages is directly
+from a constructed <code>Agent</code> or <code>MockAgent</code>.
+
+</p>
+<pre><code class="lang-js"><span class="keyword">var</span> msg = agent.createMessage();</code></pre>
+</div>
+        </div>
+        <div id="message_builder_api-alert" class="segment">
+          <div class="para"><a href="#message_builder_api-alert">&para;</a></div>
+          <div class="summary"><h3>.alert (key, value)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String | Object &#125;</span><span class="name">alert</span><span class="desc">body, string key or object of alert settings</span></li>
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc">(when first argument is a string)</span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="desc">{this} for chaining</span></li>
+          </ul>
+          <div class="description"><p>Sets variables to be included in the <code>alert</code> dictionary
+for the <code>aps</code> portion of the payload. If you wish to set
+a singlular message, set the <code>body</code> key. You may also set
+any of the other values outlined in the APNS documentation
+and the codecs will optimize the payload format for delivery.
+
+</p>
+<h5>Allowed keys:</h5>
+<ul>
+<li><code>body</code></li>
+<li><code>action-loc-key</code></li>
+<li><code>loc-key</code></li>
+<li><code>loc-args</code></li>
+<li><code>launch-image</code></li>
+</ul>
+<pre><code class="lang-js"><span class="comment">// just set body</span>
+msg.alert(<span class="string">'Hello Universe'</span>);
+
+<span class="comment">// set multiple values</span>
+msg.set({
+    body: <span class="string">'Hello Universe'</span>
+  , <span class="string">'launch-image'</span>: <span class="string">'notif.png'</span>
+});
+
+<span class="comment">// chainable</span>
+msg
+  .alert(<span class="string">'Hello Universe'</span>)
+  .alert(<span class="string">'launch-image'</span>, <span class="string">'notif.png'</span>);</code></pre>
+</div>
+        </div>
+        <div id="message_builder_api-set" class="segment">
+          <div class="para"><a href="#message_builder_api-set">&para;</a></div>
+          <div class="summary"><h3>.set (key, value)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String | Object &#125;</span><span class="name">string</span><span class="desc">key or object of custom settings</span></li>
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc">(when first argument is string)</span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="desc">{this} for chaining</span></li>
+          </ul>
+          <div class="description"><p>Set extra key values that will be incuded
+as part of the payload. <code>aps</code> is reserved by
+Apple and <code>enc</code> is reserved by apnagent.
+
+</p>
+<p>Is a key/value you pair is provided it will
+be set. If an object is provided, all data points
+will be merged into the current payload.
+
+</p>
+<pre><code class="lang-js"><span class="comment">// single value</span>
+msg.set(<span class="string">'key'</span>, <span class="string">'value'</span>);
+
+<span class="comment">// multiple values</span>
+msg.set({
+    key1: <span class="string">'value1'</span>
+  , key2: <span class="string">'value2'</span>
+});
+
+<span class="comment">// or chainable</span>
+msg
+  .set(<span class="string">'key1'</span>, <span class="string">'value1'</span>)
+  .set(<span class="string">'key2'</span>, <span class="string">'value2'</span>);</code></pre>
+</div>
+        </div>
+        <div id="message_builder_api-device" class="segment">
+          <div class="para"><a href="#message_builder_api-device">&para;</a></div>
+          <div class="summary"><h3>.device (token)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; apnagent.Device | String | Buffer &#125;</span><span class="name">device</span><span class="desc">token</span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="desc">{this} for chaining</span></li>
+          </ul>
+          <div class="description"><p>Set the device that this message is to be delivered
+to. Device can be provided as a string or buffer. If
+provided as a string, it will be sanitized of spaces
+and extra characters (such as <code>&lt;</code> and <code>&gt;</code>).
+
+</p>
+<pre><code class="lang-js">msg.device(<span class="string">'a1b2c3'</span>);
+msg.device(<span class="string">'&lt;a1b2c3&gt;'</span>);</code></pre>
+</div>
+        </div>
+        <div id="message_builder_api-expires" class="segment">
+          <div class="para"><a href="#message_builder_api-expires">&para;</a></div>
+          <div class="summary"><h3>.expires (time)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number | String &#125;</span><span class="name">time</span><span class="desc">until expiration</span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="desc">{this} for chaining</span></li>
+          </ul>
+          <div class="description"><p>Set the message expiration date when being used
+with the enhanced codec. The default value is <code>0</code> which
+will indicate to Apple to only attempt to deliver
+the message once.
+
+</p>
+<p>Should be provided as the number of ms until expiration
+or as a string that can be converted, such as <code>1d</code>.
+
+</p>
+<pre><code class="lang-js"><span class="comment">// set to specific time in future</span>
+msg.expires(<span class="string">'30m'</span>); <span class="comment">// 30 minutes</span>
+msg.expires(<span class="string">'1d'</span>); <span class="comment">// 1 day</span>
+
+<span class="comment">// reset to default value</span>
+msg.expires(<span class="number">0</span>);
+msg.expires(<span class="literal">true</span>);</code></pre>
+</div>
+        </div>
+        <div id="message_builder_api-badge" class="segment">
+          <div class="para"><a href="#message_builder_api-badge">&para;</a></div>
+          <div class="summary"><h3>.badge (number)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">badge</span><span class="desc">count</span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="desc">{this} for chaining</span></li>
+          </ul>
+          <div class="description"><p>Set the badge number to be displayed.
+
+</p>
+<pre><code class="lang-js">msg.badge(<span class="number">4</span>);</code></pre>
+</div>
+        </div>
+        <div id="message_builder_api-sound" class="segment">
+          <div class="para"><a href="#message_builder_api-sound">&para;</a></div>
+          <div class="summary"><h3>.sound (file)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">sound</span><span class="desc">file</span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="desc">{this} for chaining</span></li>
+          </ul>
+          <div class="description"><p>Set the sound file to be played when this message
+is delivered if the app is closed.
+
+</p>
+<pre><code class="lang-js">msg.sound(<span class="string">'bingbong.aiff'</span>);</code></pre>
+</div>
+        </div>
+        <div id="message_builder_api-send" class="segment">
+          <div class="para"><a href="#message_builder_api-send">&para;</a></div>
+          <div class="summary"><h3>.send (cb)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">callback</span><span class="desc"></span></li>
+          </ul>
+          <div class="description"><p>Send the message through the connected agent. The <code>cb</code>
+function will be invoked with an error if there is
+a problem serializing the message for transport.
+
+</p>
+<p>If there are no serialization errors, the callback
+will be invoked when the message has been flushed
+through the socket. This does NOT mean the message
+has be received by the device or that Apple has
+accepted the message. If Apple has a problem with
+the message it will be emitted on the agent&#39;s
+<code>message:error</code> event.
+
+</p>
+<pre><code class="lang-js">msg.send(<span class="function"><span class="keyword">function</span> <span class="params">(err)</span> {</span>
+  <span class="keyword">if</span> (err) {
+    <span class="comment">// handle it</span>
+  }
+});</code></pre>
+</div>
+        </div>
+        <div id="header-resources" class="segment">
+          <div class="para"><a href="#header-resources">&para;</a></div>
+          <div class="description"><h2>Resources</h2>
+<h3>License</h3>
+<p>(The MIT License)
+</p>
+</div>
+        </div>
+        <footer><a href="http://qualiancy.com" class="qual"><img src="http://qualiancy.com/img/qualiancy-logo.png" class="qlogo"></a></footer>
+      </section>
+    </div>
+  </body>
+</html>

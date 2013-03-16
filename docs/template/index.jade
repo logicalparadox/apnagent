@@ -1,0 +1,107 @@
+extends layout
+
+block header
+  h1: a.scroll(href='#top')= file.title
+  .tagline!= site.description 
+  a.fork(href='https://github.com/' + site.ghuser + '/' + site.ghproject)
+    h2 View the Project on GitHub
+    .project #{site.ghuser}/#{site.ghproject}
+
+
+block nav
+  div(id='introduction', class='head') 
+    a.scroll(href='#header-introduction') Introduction
+  if files.starting 
+    for section in files.starting
+      - group = section.href.split('/').filter(function (l) { return l.length ? true : false });
+      - if (group.length == 2)
+        div(id=group[1], class='head'): a.scroll(href='#header-' + group[1])= section.title
+        for subSection in files.starting
+          - subgroup = subSection.href.split('/').filter(function (l) { return l.length ? true : false });
+          if (subgroup.length !== 2 && ~subSection.href.indexOf(group[1])) 
+            div(id=subgroup[2], class='section ' + group[1]): a.scroll(href='#' + group[1] + '-' + subgroup[2])= subSection.title
+  for codeFile in files.code
+    - var lastHeader = ''
+    for comment in codeFile.prepared
+      for tag in comment.tags
+        - if (tag.type === 'header')
+          - lastHeader = tag.string.toLowerCase().replace(/\s/g, '_')
+          div(id=lastHeader, class='head'): a.scroll(href='#header-' + lastHeader)= tag.string
+        - else if (tag.type === 'name')
+          div(id=tag.string, class='section ' + lastHeader): a.scroll(href='#' + lastHeader + '-' + tag.string)= tag.string
+  if files.sections
+    for section in files.sections
+      - group = section.href.split('/').filter(function (l) { return l.length ? true : false });
+      - if (group.length == 2)
+        div(id=group[1], class='head'): a.scroll(href='#header-' + group[1])= section.title
+        for subSection in files.sections
+          - subgroup = subSection.href.split('/').filter(function (l) { return l.length ? true : false });
+          if (subgroup.length !== 2 && ~subSection.href.indexOf(group[1])) 
+            div(id=subgroup[2], class='section ' + group[1]): a.scroll(href='#' + group[1] + '-' + subgroup[2])= subSection.title
+
+
+block content
+  #header-introduction.segment
+    .para: a(href='#header-introduction') &para;
+    .description!= file.prepared
+  if files.starting
+    for section in files.starting
+      - group = section.href.split('/').filter(function (l) { return l.length ? true : false });
+      - if (group.length == 2)
+        .segment(id='header-' + group[1])
+          .para: a(href='#header-' + group[1]) &para;
+          .description!= section.prepared
+        for subSection in files.starting
+          - subgroup = subSection.href.split('/').filter(function (l) { return l.length ? true : false });
+          if (subgroup.length !== 2 && ~subSection.href.indexOf(group[1])) 
+            .segment(id=group[1] + '-' + subgroup[2])
+              .para: a(href='#' + group[1] + '-' + subgroup[2]) &para;
+              .description!= subSection.prepared
+  for codeFile in files.code
+    - var lastPrimary = ''
+    for comment in codeFile.prepared
+      - if (!comment.ignore)
+        - var id = 'default'
+        for tag in comment.tags
+          - if (tag.type === 'header')
+            - lastPrimary = tag.string.toLowerCase().replace(/\s/g, '_')
+            - id = 'header-' + lastPrimary
+          - if (tag.type === 'name')
+            - id = lastPrimary + '-' + tag.string
+        .segment(id=id)
+          .para: a(href='#' + id) &para;
+          .summary!= comment.description.summary
+          ul.tags
+            each tag in comment.tags
+              - if (tag.type == 'param')
+                -var types = tag.types.join(' | ')
+                li.tag
+                  span.type &#64;#{tag.type}
+                  span.types &#123; #{types} &#125;
+                  span.name #{tag.name}
+                  span.desc #{tag.description}
+              - else if (tag.type == 'see')
+                li.tag
+                  span.type &#64;#{tag.type}
+                  if tag.url
+                    span.type: a(href=tag.title, target='_blank')= tag.url
+                  else
+                    span.name #{tag.local}
+              - else if (tag.type == 'return' || tag.type == 'returns')
+                li.tag
+                  span.type &#64;return
+                  span.desc #{tag.string}
+          .description!= comment.description.body
+  if files.sections
+    for section in files.sections
+      - group = section.href.split('/').filter(function (l) { return l.length ? true : false });
+      - if (group.length == 2)
+        .segment(id='header-' + group[1])
+          .para: a(href='#header-' + group[1]) &para;
+          .description!= section.prepared
+        for subSection in files.sections
+          - subgroup = subSection.href.split('/').filter(function (l) { return l.length ? true : false });
+          if (subgroup.length !== 2 && ~subSection.href.indexOf(group[1])) 
+            .segment(id=group[1] + '-' + subgroup[2])
+              .para: a(href='#' + group[1] + '-' + subgroup[2]) &para;
+              .description!= subSection.prepared
