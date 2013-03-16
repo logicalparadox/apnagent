@@ -31,11 +31,10 @@ agent.connect(function (err) {
  */
 
 agent.on('mock:message', function (raw) {
-  var device = new apnagent.Device(raw.deviceToken)
-    , payload = JSON.parse(raw.payload.toString());
+  var device = new apnagent.Device(raw.deviceToken);
   console.log('');
   console.log('==> %d - %s', raw.identifier, device.toString());
-  console.log(JSON.stringify(payload, null, 2));
+  console.log(JSON.stringify(raw.payload, null, 2));
 });
 
 /**
