@@ -10,6 +10,7 @@ fez-reset()
 colorfg = #FA2A00
 colorbg = #fff
 colorhref = red
+colorfont = #333
 
 coloraccent = #285F62
 
@@ -34,10 +35,10 @@ h2
 
 h3, h4, h5, h6
   color #333
+  font-weight bold
 
 h3
   color coloraccent
-  font-weight bold
 
 a
   color colorhref
@@ -71,21 +72,29 @@ em
 
 strong
   font-weight bold
-  
+
 code, pre
   font-family Consolas,Menlo,"Liberation Mono",Courier,monospace
   color #666
   font-size 12px
 
-ul
+ul, ol
   margin-bottom 1.5em
   list-style disc
   padding-left 40px
 
+ol
+  list-style decimal
+
+blockquote
+  border-left 5px solid lighten(#333, 85%)
+  padding-left 15px
+  color lighten(colorfont, 40%)
+
 pre
   padding 8px 15px
   overflow-x auto
-  background #fff // #F8F8F8
+  background lighten(#333, 98%)
   margin-bottom 1.5em
   border 1px solid lighten(#333, 85%)
   border-radius 5px

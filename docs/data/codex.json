@@ -19,14 +19,14 @@
         , "template": "index"
         , "render-file": false }
       , { "name": "index"
-        , "title": "Device"
-        , "file": "../../lib/apnagent/device.js"
+        , "title": "Message"
+        , "file": "../../lib/apnagent/message.js"
         , "description": ":)"
         , "template": "index"
         , "render-file": false }
       , { "name": "index"
-        , "title": "Message"
-        , "file": "../../lib/apnagent/message.js"
+        , "title": "Device"
+        , "file": "../../lib/apnagent/device.js"
         , "description": ":)"
         , "template": "index"
         , "render-file": false }

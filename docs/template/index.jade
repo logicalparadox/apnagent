@@ -73,7 +73,7 @@ block content
           .summary!= comment.description.summary
           ul.tags
             each tag in comment.tags
-              - if (tag.type == 'param')
+              - if (tag.type == 'param' || tag.type =='return')
                 -var types = tag.types.join(' | ')
                 li.tag
                   span.type &#64;#{tag.type}
@@ -86,8 +86,9 @@ block content
                   if tag.url
                     span.type: a(href=tag.title, target='_blank')= tag.url
                   else
-                    span.name #{tag.local}
-              - else if (tag.type == 'return' || tag.type == 'returns')
+                    - localName = tag.local.replace(tag.visibility, '')
+                    span.type: a(href=tag.visibility, class='scroll')= localName
+              - else if (tag.type == 'returns')
                 li.tag
                   span.type &#64;return
                   span.desc #{tag.string}
