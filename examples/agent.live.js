@@ -44,7 +44,7 @@ agent
 
 agent.on('message:error', function (err, msg) {
   switch (err.name) {
-    case 'GatewayMesssageError':
+    case 'GatewayMessageError':
       console.log('[emitted] gw notification error: %s', err.message);
       if (err.code === 8) {
         console.log('  > %s', msg.device().toString());
