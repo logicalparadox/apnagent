@@ -1,11 +1,7 @@
 ---
   title: Resources
   render-file: false
-  weight: 10
+  weight: 100
 ---
 
 ## Resources
-
-### License
-
-(The MIT License)

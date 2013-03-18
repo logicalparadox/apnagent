@@ -280,6 +280,10 @@ header {
   position: fixed;
   text-align: right;
 }
+header .travisci {
+  display: block;
+  margin-bottom: 16px;
+}
 section#content {
   width: 500px;
   padding-top: 65px;
@@ -322,7 +326,8 @@ pre .css .rule .keyword,
 pre .winutils,
 pre .javascript .title,
 pre .lisp .title,
-pre .subst {
+pre .subst,
+pre .literal {
   color: #000;
   font-weight: bold;
 }

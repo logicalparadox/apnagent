@@ -30,6 +30,9 @@ html(lang='en')
     .wrapper
       header
         block header
+        - if (site.travisci)
+          a.travisci(href='https://travis-ci.org/' + site.ghuser + '/' + site.ghproject, target='_blank')
+            img(src=site.travisci, alt="Build Status")
         nav
           block nav
             ul.pages
