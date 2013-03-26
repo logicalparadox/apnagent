@@ -50,6 +50,10 @@
           <div id="badge" class="section message_builder_api"><a href="#message_builder_api-badge" class="scroll">badge</a></div>
           <div id="sound" class="section message_builder_api"><a href="#message_builder_api-sound" class="scroll">sound</a></div>
           <div id="send" class="section message_builder_api"><a href="#message_builder_api-send" class="scroll">send</a></div>
+          <div id="feedback_api" class="head"><a href="#header-feedback_api" class="scroll">Feedback API</a></div>
+          <div id="use" class="section feedback_api"><a href="#feedback_api-use" class="scroll">use</a></div>
+          <div id="connect" class="section feedback_api"><a href="#feedback_api-connect" class="scroll">connect</a></div>
+          <div id="close" class="section feedback_api"><a href="#feedback_api-close" class="scroll">close</a></div>
           <div id="device_api" class="head"><a href="#header-device_api" class="scroll">Device API</a></div>
           <div id="toBuffer" class="section device_api"><a href="#device_api-toBuffer" class="scroll">toBuffer</a></div>
           <div id="toString" class="section device_api"><a href="#device_api-toString" class="scroll">toString</a></div>
@@ -872,6 +876,57 @@ the message it will be emitted on the agent&#39;s
     <span class="comment">// handle it</span>
   }
 });</code></pre>
+</div>
+        </div>
+        <div id="header-feedback_api" class="segment">
+          <div class="para"><a href="#header-feedback_api">&para;</a></div>
+          <div class="summary"><h2>Feedback API</h2>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;see</span><span class="type"><a href="#header-feedback" class="scroll"> Feedback Guide</a></span>
+            </li>
+          </ul>
+          <div class="description"><p>This is the feedback api.
+</p>
+</div>
+        </div>
+        <div id="feedback_api-use" class="segment">
+          <div class="para"><a href="#feedback_api-use">&para;</a></div>
+          <div class="summary"><h3>.use (fn)</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">fn</span><span class="desc">to add to stack</span></li>
+          </ul>
+          <div class="description"></div>
+        </div>
+        <div id="feedback_api-connect" class="segment">
+          <div class="para"><a href="#feedback_api-connect">&para;</a></div>
+          <div class="summary"><h3>.connect ([ callback ])</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">callback</span><span class="desc"></span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="types">&#123; this &#125;</span><span class="name"></span><span class="desc">for chaining</span></li>
+          </ul>
+          <div class="description"></div>
+        </div>
+        <div id="feedback_api-close" class="segment">
+          <div class="para"><a href="#feedback_api-close">&para;</a></div>
+          <div class="summary"><h3>.close ([ callback ])</h3>
+</div>
+          <ul class="tags">
+            <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">callback</span><span class="desc"></span></li>
+            <li class="tag"><span class="type">&#64;return</span><span class="types">&#123; this &#125;</span><span class="name"></span><span class="desc">for chaining</span></li>
+          </ul>
+          <div class="description"><p>Close the active gateway connection or cancel
+further reconnect attempts. If the queue is currently
+processing a message it will wait for the current
+message to finish before closing.
+
+</p>
+<p>Apple recommends that a connection always remains open
+even when there are no messages to process. Production
+deployments should use this sparingly.
+</p>
 </div>
         </div>
         <div id="header-device_api" class="segment">

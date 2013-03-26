@@ -26,6 +26,12 @@
         , "template": "index"
         , "render-file": false }
       , { "name": "index"
+        , "title": "Feedback"
+        , "file": "../../lib/apnagent/feedback/base.js"
+        , "description": ":)"
+        , "template": "index"
+        , "render-file": false }
+      , { "name": "index"
         , "title": "Device"
         , "file": "../../lib/apnagent/device.js"
         , "description": ":)"
