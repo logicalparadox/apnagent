@@ -1,6 +1,6 @@
 # APN Agent [![Build Status](https://travis-ci.org/qualiancy/apnagent.png?branch=master)](https://travis-ci.org/qualiancy/apnagent)
 
-> Node adapater for Apple Push Notification (APN) Service.
+> Node adapater for Apple Push Notification (APN) service.
 
 #### Features
 
@@ -8,10 +8,6 @@
 - persistent connection management
 - apn feedback service integration
 - feature complete mock agents for local-only testing/development
-
-#### Coming Soon
-
-- documenation website
 
 #### Related Projects
 
