@@ -1,4 +1,35 @@
 
+1.0.0 / 2013-03-27 
+==================
+
+  * pkg: update description
+  * docs: update
+  * feedback: [base] change default interval
+  * agent: [all] reconnect now cancelled by .close()
+  * docs: add resources section
+  * docs: color scheme
+  * docs: checkpoint - agent docs ready for proofread
+  * agent: [base] documentation
+  * agent: [mock/live] fix reference to stored gateway error
+  * Merge branch 'refactor/node10'
+  * feedback: [base/mock] convert to new lotus api
+  * examples: [agent] fix small typos
+  * agent: [all] upgrade to use lotus 1.0.x
+  * codecs: [all] change exports for lotus compatibility
+  * pkg: [lotus] update to 1.0.x
+  * docs: add site folder
+  * lib: documentation
+  * grep: change to qualiancy project
+  * Merge branch 'refactor/examples'
+  * agent: [mock] fix scoping bug
+  * examples: add mock examples for agent/feedback
+  * examples: update live examples
+  * test: [feedback] test for change of concurrency
+  * feedback: [base] add set handle for concurrency change
+  * deps: [facet] update and migrate to 0.4.x
+  * message: documentation
+  * device: add comments
+
 0.5.0 / 2013-02-28 
 ==================
 
