@@ -1,4 +1,10 @@
 
+1.0.1 / 2013-04-04 
+==================
+
+  * agent: [base] queue/cache start in pause state
+  * docs: add link to tutorial article
+
 1.0.0 / 2013-03-27 
 ==================
 
