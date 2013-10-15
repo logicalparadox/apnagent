@@ -42,6 +42,28 @@ describe('Message', function () {
     });
   });
 
+  describe('.contentAvailable(true)', function () {
+    it('should set content-available flag', function () {
+      var msg = new Message()
+        , res = msg.contentAvailable(true);
+      msg.should
+        .have.property('settings')
+        .and.have.property('content-available', 1);
+      res.should.deep.equal(msg);
+    });
+  });
+
+  describe('.contentAvailable(false)', function () {
+    it('should set content-available flag to 0', function () {
+      var msg = new Message()
+        , res = msg.contentAvailable(false);
+      msg.should
+        .have.property('settings')
+        .and.not.have.property('content-available');
+      res.should.deep.equal(msg);
+    });
+  });
+
   describe('.sound()', function () {
     it('should set sound', function () {
       var msg = new Message()
