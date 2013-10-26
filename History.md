@@ -1,4 +1,10 @@
 
+1.0.3 / 2013-10-26 
+==================
+
+ * Merge pull request #2 from nrcmedia/content-available-support
+ * Added support for content-available flag
+
 1.0.2 / 2013-04-16 
 ==================
 
