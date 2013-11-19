@@ -1,4 +1,10 @@
 
+1.0.4 / 2013-11-19 
+==================
+
+ * Merge pull request #3 from nrcmedia/master
+ * Destroy the gateway connection on error, so reconnection works also when the connection is dropped instead of closed.
+
 1.0.3 / 2013-10-26 
 ==================
 
