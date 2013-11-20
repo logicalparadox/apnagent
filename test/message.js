@@ -199,6 +199,17 @@ describe('Message', function () {
       });
     });
 
+    it('should have no alert body when alert not specified', function() {
+      var msg = new Message();
+      msg.device('00').sound('default');
+      var json = msg.serialize();
+      json.payload.should.deep.equal({
+        aps: {
+          sound: 'default'
+        }
+      });
+    });
+
     it('should truncate when only alert body', function () {
       var msg = new Message();
 
