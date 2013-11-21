@@ -1,4 +1,10 @@
 
+1.0.5 / 2013-11-21 
+==================
+
+ * Merge pull request #4 from nrcmedia/master
+ * Not adding an alert key to the aps if the alert is not set
+
 1.0.4 / 2013-11-19 
 ==================
 
