@@ -17,7 +17,8 @@ module.exports = function(hydro) {
     ],
     chai: {
       styles: [ 'should' ],
-      showDiff: true
+      showDiff: true,
+      showStack: true
     },
     tests: [
       'test/*.js'

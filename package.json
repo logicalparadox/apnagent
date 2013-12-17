@@ -29,7 +29,8 @@
   },
   "main": "./index",
   "scripts": {
-    "test": "hydro"
+    "test": "hydro",
+    "test-live": "APNAGENT_LIVE=1 hydro"
   },
   "dependencies": {
     "breeze-async": "0.1.x",
