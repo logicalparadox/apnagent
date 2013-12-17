@@ -1,51 +1,54 @@
 {
-    "name": "apnagent"
-  , "version": "1.0.5"
-  , "description": "Node adapter for Apple Push Notification (APN) service."
-  , "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)"
-  , "license": "MIT"
-  , "homepage": "http://apnagent.qualiancy.com"
-  , "contributors": [
-      "Jake Luer <jake@qualiancy.com>"
-    ]
-  , "keywords": [
-        "apn"
-      , "apple"
-      , "push"
-      , "notifications"
-      , "ios"
-      , "iphone"
-      , "ipad"
-    ]
-  , "repository": {
-        "type": "git"
-      , "url": "git@github.com:qualiancy/apnagent.git"
-    }
-  , "bugs": {
-      "url": "https://github.com/qualiancy/apnagent/issues"
-    }
-  , "engines": {
-      "node": ">= 0.8.0"
-    }
-  , "main": "./index"
-  , "scripts": {
-      "test": "make test"
-    }
-  , "dependencies": {
-        "breeze-async": "0.1.x"
-      , "breeze-queue": "0.4.x"
-      , "drip": "1.1.x"
-      , "facet": "0.4.x"
-      , "lotus": "~1.0.1"
-      , "tea-error": "0.1.x"
-      , "tea-extend": "0.2.x"
-      , "tea-inherits": "0.1.x"
-      , "tea-ms": "0.1.x"
-      , "sherlock": "*"
-    }
-  , "devDependencies": {
-        "chai": "*"
-      , "chai-spies": "*"
-      , "mocha": "*"
-    }
+  "name": "apnagent",
+  "version": "1.0.5",
+  "description": "Node adapter for Apple Push Notification (APN) service.",
+  "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)",
+  "license": "MIT",
+  "homepage": "http://apnagent.qualiancy.com",
+  "contributors": [
+    "Jake Luer <jake@qualiancy.com>"
+  ],
+  "keywords": [
+    "apn",
+    "apple",
+    "push",
+    "notifications",
+    "ios",
+    "iphone",
+    "ipad"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:qualiancy/apnagent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qualiancy/apnagent/issues"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "main": "./index",
+  "scripts": {
+    "test": "hydro"
+  },
+  "dependencies": {
+    "breeze-async": "0.1.x",
+    "breeze-queue": "0.4.x",
+    "drip": "1.1.x",
+    "facet": "0.4.x",
+    "lotus": "~1.0.1",
+    "tea-error": "0.1.x",
+    "tea-extend": "0.2.x",
+    "tea-inherits": "0.1.x",
+    "tea-ms": "0.1.x",
+    "sherlock": "*"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "chai-spies": "*",
+    "hydro": "~0.8.3",
+    "hydro-bdd": "0.0.3",
+    "hydro-chai": "~0.0.4",
+    "hydro-dot": "~1.0.5"
+  }
 }

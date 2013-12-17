@@ -1,6 +1,4 @@
 describe('Cache', function () {
-  var Cache = __apnagent.Cache;
-
   describe('.push', function () {
     describe('(id, obj)', function () {
       it('should add an item to the store', function () {

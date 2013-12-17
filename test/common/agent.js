@@ -33,7 +33,7 @@ module.exports = function (Agent, key, cert, live) {
     it('should return a new Message', function () {
       var agent = newAgent()
         , msg = agent.createMessage();
-      msg.should.be.instanceof(__apnagent.Message);
+      msg.should.be.instanceof(Message);
     });
 
     it('should default to enhanced codec', function () {
