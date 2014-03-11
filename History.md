@@ -1,4 +1,11 @@
 
+1.1.0 / 2014-03-11 
+==================
+
+  * bug: streams emit empty reads in node 0.11
+  * Merge pull request #6 from lemonlabs/ft/mockagent
+  * Extend MockAgent so it can simulate msg rejection on Apple side (err 8)
+
 1.0.5 / 2013-11-21 
 ==================
 
