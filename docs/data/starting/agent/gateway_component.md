@@ -24,11 +24,11 @@ These options are ignored by the `MockAgent`.
 **passphrase** _{String}_ - For use with certificates if they are secured with a password. This option 
 ignored by the `MockAgent`.
 
-**sandbox** _{Boolean}_ (default: _false_) Should agent connect to the APN sandbox gateway. This option 
+**sandbox** _{Boolean}_ (default: _false_) - Should agent connect to the APN sandbox gateway. This option 
 is ignored by the `MockAgent`.
 
 **reconnect delay** _{Number|String}_ (default: _3s_) - Milliseconds after a disconnect that a reconnect 
-should be attempted.  Can also be set as string using `s`, `m`, `h` for _seconds_, _minutes_, _hours)_ 
+should be attempted.  Can also be set as string using `s`, `m`, `h` for _seconds_, _minutes_, _hours_ 
 respectively.
 
 #### Events
