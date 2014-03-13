@@ -18,4 +18,4 @@ ttl is 10 minutes but it can be modified by configuring the `cache ttl` setting 
 #### Settings
 
 **cache ttl** _{Number|String}_ (default: _10m_) - The minimum number of milliseconds that a message should be present in the queue before
-considered a success and removed.  Can also be set as string using `s`, `m`, `h` for _seconds_, _minutes_, _hours)_ respectively.
+considered a success and removed.  Can also be set as string using `s`, `m`, `h` for _seconds_, _minutes_, _hours_ respectively.

@@ -99,7 +99,7 @@ mechanisms.
 #### Settings
 
 **expires** _{String|Number}_ (default: _0_) - Set this value on the `agent` to modify the default message expiration value. 
-Can also be set as string using `s`, `m`, `h`, `d` for _seconds_, _minutes_, _hours)_, _days_ respectively.
+Can also be set as string using `s`, `m`, `h`, `d` for _seconds_, _minutes_, _hours_, _days_ respectively.
 
 ```js
 agent.set('expires', '1d');
