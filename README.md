@@ -1,4 +1,4 @@
-# APN Agent [![Build Status](https://travis-ci.org/qualiancy/apnagent.png?branch=master)](https://travis-ci.org/qualiancy/apnagent)
+# APN Agent [![Build Status](https://travis-ci.org/qualiancy/apnagent.svg?branch=master)](https://travis-ci.org/qualiancy/apnagent)
 
 > Node adapater for Apple Push Notification (APN) service.
 
