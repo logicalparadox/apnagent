@@ -146,6 +146,14 @@ describe('Message', function () {
       , 'sending messages that are this long then you really'
       , 'need to understand what a notification is.'
     ].join(' ');
+    var longBodyUnicode = [
+        'Οσα συμβαίνουν στην Ουκρανία έχουν ανοίξει'
+      , 'μια εξαιρετικά ενδιαφέρουσα συζήτηση για το'
+      , 'κατά πόσον οδεύουμε προς μια νέα παγκόσμια γεωπολιτική'
+      , 'συγκυρία. Κάποιοι πιστεύουν ότι ο χαμένος διπολισμός'
+      , 'του Ψυχρού Πολέμου επανέρχεται, άλλοι θεωρούν ότι η'
+      , 'σημερινή Ρωσία δεν μπορεί να παίξει τον ρόλο.'
+    ].join(' ');
 
     it('should get payload when only alert body', function () {
       var msg = new Message();
@@ -239,6 +247,33 @@ describe('Message', function () {
       });
     });
 
+    it('should truncate when only alert body (unicode)', function () {
+      var msg = new Message();
+
+      msg
+        .device('feedface')
+        .set('custom', 'variable')
+        .alert('body', longBodyUnicode)
+        .badge(1);
+
+      var json = msg.serialize();
+
+      Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
+        .should.not.be.above(256);
+
+      json.payload.should.deep.equal({
+          custom: 'variable'
+        , aps: {
+              alert:
+                [ 'Οσα συμβαίνουν στην Ουκρανία έχουν ανοίξει'
+                , 'μια εξαιρετικά ενδιαφέρουσα συζήτηση για το'
+                , 'κατά πόσον οδεύουμε...'
+                ].join(' ')
+            , badge: 1
+          }
+      });
+    });
+
     it('should truncate for complex alert body', function () {
       var msg = new Message();
 
@@ -263,6 +298,36 @@ describe('Message', function () {
                     , 'this string really long so that it is truncated'
                     , 'when I attempt to convert it to a string. If you are'
                     , 'sending messages that are this...'
+                    ].join(' ')
+                , 'launch-image': 'img.png'
+              }
+            , badge: 1
+          }
+      });
+    });
+
+    it('should truncate for complex alert body (unicode)', function () {
+      var msg = new Message();
+
+      msg
+        .device('00')
+        .set('custom', 'variable')
+        .alert('body', longBodyUnicode)
+        .alert('launch-image', 'img.png')
+        .badge(1);
+
+      var json = msg.serialize();
+
+      Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
+        .should.not.be.above(256);
+
+      json.payload.should.deep.equal({
+          custom: 'variable'
+        , aps: {
+              alert: {
+                  body:
+                    [ 'Οσα συμβαίνουν στην Ουκρανία έχουν ανοίξει'
+                    , 'μια εξαιρετικά ενδιαφέρουσα συζήτηση για το...'
                     ].join(' ')
                 , 'launch-image': 'img.png'
               }
