@@ -1,4 +1,14 @@
 
+1.1.1 / 2014-03-24 
+==================
+
+  * Merge pull request #9 from TassosD/unicodetrim
+  * Fix payload trim for unicode alert text
+  * Merge pull request #8 from jonasrauber/master
+  * Travis SVG badge
+  * Merge pull request #7 from jonasrauber/master
+  * removed incorrect parentheses and added missing dash in documentation
+
 1.1.0 / 2014-03-11 
 ==================
 
