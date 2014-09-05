@@ -167,7 +167,7 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(2048);
 
       json.payload.should.deep.equal({
           custom: 'variable'
@@ -192,7 +192,7 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(2048);
 
       json.payload.should.deep.equal({
           custom: 'variable'
@@ -230,7 +230,7 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(2048);
 
       json.payload.should.deep.equal({
           custom: 'variable'
@@ -259,7 +259,7 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(2048);
 
       json.payload.should.deep.equal({
           custom: 'variable'
@@ -287,7 +287,7 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(2048);
 
       json.payload.should.deep.equal({
           custom: 'variable'
@@ -319,7 +319,7 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(2048);
 
       json.payload.should.deep.equal({
           custom: 'variable'
