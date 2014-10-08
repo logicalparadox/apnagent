@@ -1,4 +1,16 @@
 
+1.1.2 / 2014-10-08 
+==================
+
+ * pgk: add serve command
+ * Merge pull request #18 from phgrey/master
+ * formatting && making the method private
+ * correcting jsdocs
+ * some memory leaks fixing
+ * Merge pull request #11 from codeHatcher/master
+ * fixing alert example when setting multiple values
+ * alert example for object incorrect, fixing
+
 1.1.1 / 2014-03-24 
 ==================
 

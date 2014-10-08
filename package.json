@@ -1,6 +1,6 @@
 {
   "name": "apnagent",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Node adapter for Apple Push Notification (APN) service.",
   "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)",
   "license": "MIT",
