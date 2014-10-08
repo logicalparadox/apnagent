@@ -1,4 +1,4 @@
-const MAX_PAYLOAD_SIZE = 2048;
+var MAX_PAYLOAD_SIZE = 2048;
 
 describe('Message', function () {
   var sample_token = '5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf8d 3d5524c6'
