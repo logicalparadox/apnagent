@@ -1,4 +1,12 @@
 
+1.1.3 / 2014-10-08 
+==================
+
+ * Merge pull request #22 from Speicher210/master
+ * Replace const by var.
+ * travis using node .10 and .11
+ * Increase the max payload size according to the not-yet-documented change for APN (256bytes->2048bytes). Centralise the value in a constant Update the test case for truncation and exceptions
+
 1.1.2 / 2014-10-08 
 ==================
 
