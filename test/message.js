@@ -1,3 +1,5 @@
+var MAX_PAYLOAD_SIZE = 2048;
+
 describe('Message', function () {
   var sample_token = '5b51030d d5bad758 fbad5004 bad35c31 e4e0f550 f77f20d4 f737bf8d 3d5524c6'
     , device = new Buffer(sample_token.replace(/\s/g, ''), 'hex');
@@ -139,21 +141,22 @@ describe('Message', function () {
   });
 
   describe('.serialize()', function () {
-    var longBody = [
+    var longBody = new Array(1900).concat([
         'Hello Universe. I am going to make'
       , 'this string really long so that it is truncated'
       , 'when I attempt to convert it to a string. If you are'
       , 'sending messages that are this long then you really'
       , 'need to understand what a notification is.'
-    ].join(' ');
-    var longBodyUnicode = [
+    ]).join(' ');
+
+    var longBodyUnicode = new Array(1800).concat([
         'Οσα συμβαίνουν στην Ουκρανία έχουν ανοίξει'
       , 'μια εξαιρετικά ενδιαφέρουσα συζήτηση για το'
       , 'κατά πόσον οδεύουμε προς μια νέα παγκόσμια γεωπολιτική'
       , 'συγκυρία. Κάποιοι πιστεύουν ότι ο χαμένος διπολισμός'
       , 'του Ψυχρού Πολέμου επανέρχεται, άλλοι θεωρούν ότι η'
       , 'σημερινή Ρωσία δεν μπορεί να παίξει τον ρόλο.'
-    ].join(' ');
+    ]).join(' ');
 
     it('should get payload when only alert body', function () {
       var msg = new Message();
@@ -167,7 +170,7 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(MAX_PAYLOAD_SIZE);
 
       json.payload.should.deep.equal({
           custom: 'variable'
@@ -192,7 +195,7 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(MAX_PAYLOAD_SIZE);
 
       json.payload.should.deep.equal({
           custom: 'variable'
@@ -230,18 +233,16 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(MAX_PAYLOAD_SIZE);
 
       json.payload.should.deep.equal({
           custom: 'variable'
         , aps: {
               alert:
-                [ 'Hello Universe. I am going to make'
+                new Array(1900).concat([ 'Hello Universe. I am going to make'
                 , 'this string really long so that it is truncated'
-                , 'when I attempt to convert it to a string. If you are'
-                , 'sending messages that are this long then you really'
-                , 'need to...'
-                ].join(' ')
+                , 'when I...'
+                ]).join(' ')
             , badge: 1
           }
       });
@@ -259,16 +260,16 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(MAX_PAYLOAD_SIZE);
 
       json.payload.should.deep.equal({
           custom: 'variable'
         , aps: {
               alert:
-                [ 'Οσα συμβαίνουν στην Ουκρανία έχουν ανοίξει'
+                new Array(1800).concat([ 'Οσα συμβαίνουν στην Ουκρανία έχουν ανοίξει'
                 , 'μια εξαιρετικά ενδιαφέρουσα συζήτηση για το'
-                , 'κατά πόσον οδεύουμε...'
-                ].join(' ')
+                , 'κατά πόσον...'
+                ]).join(' ')
             , badge: 1
           }
       });
@@ -287,18 +288,16 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(MAX_PAYLOAD_SIZE);
 
       json.payload.should.deep.equal({
           custom: 'variable'
         , aps: {
               alert: {
                   body:
-                    [ 'Hello Universe. I am going to make'
-                    , 'this string really long so that it is truncated'
-                    , 'when I attempt to convert it to a string. If you are'
-                    , 'sending messages that are this...'
-                    ].join(' ')
+                    new Array(1900).concat([ 'Hello Universe. I am going to make'
+                    , 'this string really long...'
+                    ]).join(' ')
                 , 'launch-image': 'img.png'
               }
             , badge: 1
@@ -319,16 +318,16 @@ describe('Message', function () {
       var json = msg.serialize();
 
       Buffer.byteLength(JSON.stringify(json.payload), msg.encoding)
-        .should.not.be.above(256);
+        .should.not.be.above(MAX_PAYLOAD_SIZE);
 
       json.payload.should.deep.equal({
           custom: 'variable'
         , aps: {
               alert: {
                   body:
-                    [ 'Οσα συμβαίνουν στην Ουκρανία έχουν ανοίξει'
-                    , 'μια εξαιρετικά ενδιαφέρουσα συζήτηση για το...'
-                    ].join(' ')
+                    new Array(1800).concat([ 'Οσα συμβαίνουν στην Ουκρανία έχουν ανοίξει'
+                    , 'μια εξαιρετικά ενδιαφέρουσα συζήτηση για...'
+                    ]).join(' ')
                 , 'launch-image': 'img.png'
               }
             , badge: 1
