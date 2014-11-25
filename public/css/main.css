@@ -1,0 +1,419 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700");
+@import url("https://fonts.googleapis.com/css?family=Oxygen");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+h1 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+  line-height: 1.5;
+}
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.75em;
+  line-height: 1;
+}
+h3 {
+  font-size: 1.25em;
+  margin-bottom: 1em;
+  line-height: 1.2;
+}
+h4 {
+  font-size: 1.125em;
+  margin-bottom: 1.33em;
+  line-height: 1.33;
+}
+h5 {
+  font-weight: bold;
+}
+h5,
+h6 {
+  font-size: 1em;
+  margin-bottom: 1.5em;
+  line-height: 1.5;
+}
+p,
+address {
+  margin-bottom: 1.5em;
+}
+article ul {
+  list-style: disc;
+  margin-bottom: 1.5em;
+}
+article ul li {
+  margin-left: 1.5em;
+}
+code {
+  font-family: "Bitstream Vera Sans Mono", "Courier", monospace;
+}
+body {
+  font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  padding: 50px;
+  background-color: #fffffa;
+  color: #333;
+}
+h1,
+h2 {
+  font-family: 'Oxygen', sans-serif;
+  color: #333;
+}
+h1 a,
+h2 a {
+  color: #333;
+}
+h2 {
+  margin-top: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+  color: #333;
+}
+h3,
+h4,
+h5,
+h6 {
+  color: #333;
+  font-weight: bold;
+}
+h3 {
+  color: #333;
+}
+a {
+  color: #c43d3d;
+  text-decoration: none;
+}
+a.fork {
+  display: block;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ca5050), color-stop(1, #c43d3d));
+  background: -webkit-linear-gradient(top, #ca5050 0%, #c43d3d 100%);
+  background: -moz-linear-gradient(top, #ca5050 0%, #c43d3d 100%);
+  background: -o-linear-gradient(top, #ca5050 0%, #c43d3d 100%);
+  background: -ms-linear-gradient(top, #ca5050 0%, #c43d3d 100%);
+  background: linear-gradient(top, #ca5050 0%, #c43d3d 100%);
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  border: 1px solid #9e3030;
+  color: #fff;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 0px #8a2a2a;
+}
+a.fork:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d06464), color-stop(1, #ca5050));
+  background: -webkit-linear-gradient(top, #d06464 0%, #ca5050 100%);
+  background: -moz-linear-gradient(top, #d06464 0%, #ca5050 100%);
+  background: -o-linear-gradient(top, #d06464 0%, #ca5050 100%);
+  background: -ms-linear-gradient(top, #d06464 0%, #ca5050 100%);
+  background: linear-gradient(top, #d06464 0%, #ca5050 100%);
+}
+a.fork h2 {
+  border-bottom: 0px;
+  margin: 0px;
+  color: #fff;
+  padding: 0px;
+}
+a.fork .project {
+  font-size: 16px;
+}
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+code,
+pre {
+  font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace;
+  color: #666;
+  font-size: 12px;
+}
+ul,
+ol {
+  margin-bottom: 1.5em;
+  list-style: disc;
+  padding-left: 40px;
+}
+ol {
+  list-style: decimal;
+}
+blockquote {
+  border-left: 5px solid #e0e0e0;
+  padding-left: 15px;
+  color: #858585;
+}
+pre {
+  padding: 8px 15px;
+  overflow-x: auto;
+  background: #fff;
+  margin-bottom: 1.5em;
+  border: 1px solid #e0e0e0;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.segment {
+  margin-bottom: 60px;
+  position: relative;
+}
+.segment .para {
+  position: absolute;
+  left: -20px;
+  font-size: 14px;
+  width: 20px;
+  display: none;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+.segment .para a {
+  color: #c43d3d;
+}
+ul.tags {
+  font-size: 12px;
+}
+ul.tags li.tag span {
+  margin-right: 5px;
+}
+ul.tags li.tag span.type {
+  font-weight: bold;
+}
+ul.tags li.tag span.types {
+  font-style: italic;
+}
+.wrapper {
+  width: 860px;
+  margin: 0px auto;
+}
+header {
+  width: 270px;
+  float: left;
+  position: fixed;
+  text-align: right;
+}
+header .travisci {
+  display: block;
+  margin-bottom: 16px;
+}
+section#content {
+  width: 500px;
+  padding-top: 65px;
+  float: right;
+}
+nav {
+  text-align: right;
+}
+nav .active {
+  font-weight: bold;
+}
+nav .section {
+  display: none;
+}
+nav .head > a {
+  color: #333;
+}
+nav .section > a {
+  color: #c43d3d;
+}
+footer a.qual {
+  display: block;
+}
+footer a.qual .qlogo {
+  display: block;
+  margin: 100px auto;
+}
+pre code {
+  display: block;
+}
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic;
+}
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .lisp .title,
+pre .subst,
+pre .literal {
+  color: #000;
+  font-weight: bold;
+}
+pre .number,
+pre .hexcolor {
+  color: #40a070;
+}
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14;
+}
+pre .title,
+pre .id {
+  color: #900;
+  font-weight: bold;
+}
+pre .javascript .title,
+pre .lisp .title,
+pre .subst {
+  font-weight: normal;
+}
+pre .class .title,
+pre .haskell .label,
+pre .tex .command {
+  color: #458;
+  font-weight: bold;
+}
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal;
+}
+pre .attribute,
+pre .variable,
+pre .instancevar,
+pre .lisp .body,
+pre .header {
+  color: #008080;
+}
+pre .regexp {
+  color: #009926;
+}
+pre .class {
+  color: #458;
+  font-weight: bold;
+}
+pre .symbol,
+pre .ruby .symbol .string,
+pre .ruby .symbol .keyword,
+pre .ruby .symbol .keymethods,
+pre .lisp .keyword,
+pre .tex .special,
+pre .input_number {
+  color: #990073;
+}
+pre .builtin,
+pre .built_in,
+pre .lisp .title {
+  color: #0086b3;
+}
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold;
+}
+pre .deletion {
+  background: #fdd;
+}
+pre .addition {
+  background: #dfd;
+}
+pre .diff .change {
+  background: #0086b3;
+}
+pre .chunk {
+  color: #aaa;
+}
+pre .tex .formula {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}
