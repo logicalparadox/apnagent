@@ -19,10 +19,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:qualiancy/apnagent.git"
+    "url": "git@github.com:logicalparadox/apnagent.git"
   },
   "bugs": {
-    "url": "https://github.com/qualiancy/apnagent/issues"
+    "url": "https://github.com/logicalparadox/apnagent/issues"
   },
   "engines": {
     "node": ">= 0.8.0"
