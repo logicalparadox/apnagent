@@ -86,7 +86,10 @@ describe('Message', function () {
         .alert('loc-key', 'LOCKEY')
         .alert('loc-args', [ 'one', 'two' ])
         .alert('launch-image', 'img.png')
-        .alert('ignore-me', true);
+        .alert('ignore-me', true)
+        .alert('title', 'Greeting')
+        .alert('title-loc-key', 'TITLE-LOCKEY')
+        .alert('title-loc-args', ['three', 'four']);
 
       msg.should.have.property('aps').an('object');
       msg.aps.should.not.have.property('ignore-me');
@@ -96,6 +99,9 @@ describe('Message', function () {
         , 'loc-key': 'LOCKEY'
         , 'loc-args': [ 'one', 'two' ]
         , 'launch-image': 'img.png'
+        , 'title': 'Greeting'
+        , 'title-loc-key': 'TITLE-LOCKEY'
+        , 'title-loc-args': ['three', 'four']
       });
     });
 
@@ -109,6 +115,9 @@ describe('Message', function () {
         , 'loc-args': [ 'one', 'two' ]
         , 'launch-image': 'img.png'
         , 'ignore-me': true
+        , 'title': 'Greeting'
+        , 'title-loc-key': 'TITLE-LOCKEY'
+        , 'title-loc-args': ['three', 'four']
       });
 
       msg.should.have.property('aps').an('object');
@@ -119,6 +128,9 @@ describe('Message', function () {
         , 'loc-key': 'LOCKEY'
         , 'loc-args': [ 'one', 'two' ]
         , 'launch-image': 'img.png'
+        , 'title': 'Greeting'
+        , 'title-loc-key': 'TITLE-LOCKEY'
+        , 'title-loc-args': ['three', 'four']
       });
     });
   });
