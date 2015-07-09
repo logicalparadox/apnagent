@@ -89,7 +89,17 @@ describe('Message', function () {
         .alert('ignore-me', true)
         .alert('title', 'Greeting')
         .alert('title-loc-key', 'TITLE-LOCKEY')
-        .alert('title-loc-args', ['three', 'four']);
+        .alert('title-loc-args', ['three', 'four'])
+        .alert('actions', [
+            {
+               "id" : "delete",
+               "title" : "Delete"
+            },
+            {
+               "id" : "reply-to",
+               "loc-key" : "REPLYTO",
+               "loc-args" : ["Jane"]
+            }]);
 
       msg.should.have.property('aps').an('object');
       msg.aps.should.not.have.property('ignore-me');
@@ -102,7 +112,33 @@ describe('Message', function () {
         , 'title': 'Greeting'
         , 'title-loc-key': 'TITLE-LOCKEY'
         , 'title-loc-args': ['three', 'four']
+        , 'actions': [
+            {
+               "id" : "delete",
+               "title" : "Delete"
+            },
+            {
+               "id" : "reply-to",
+               "loc-key" : "REPLYTO",
+               "loc-args" : ["Jane"]
+            }]
       });
+    });
+    
+    it("should reject non array values for args and actions", function() {
+      var msg = new Message();
+      msg
+        .alert('loc-args', 'one')
+        .alert('title-loc-args', 'three')
+        .alert('actions', {
+               'id' : 'delete',
+               'title' : 'Delete'
+            });
+
+      msg.should.have.property('aps').an('object');
+      msg.aps.should.not.have.property('loc-args');
+      msg.aps.should.not.have.property('title-loc-args');
+      msg.aps.should.not.have.property('actions');
     });
 
     it('should set object', function () {
