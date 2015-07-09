@@ -74,8 +74,8 @@ describe('Cache', function () {
 
       cache.push('one', 'a');
       cache.push('two', 'b');
-      cache.push('three', 'c');
-      cache.push('four', 'd');
+      cache.push('three', 'c', now); // Ensure the age since we validate that later
+      cache.push('four', 'd', now);
 
       var spy = chai.spy('iterator', function (obj, id, age) {
         obj.should.be.a('string');
