@@ -124,7 +124,7 @@ describe('Message', function () {
             }]
       });
     });
-    
+
     it("should reject non array values for args and actions", function() {
       var msg = new Message();
       msg
@@ -168,6 +168,37 @@ describe('Message', function () {
         , 'title-loc-key': 'TITLE-LOCKEY'
         , 'title-loc-args': ['three', 'four']
       });
+    });
+  });
+
+  describe('.category()', function () {
+    it('should not have a category upon creation', function () {
+      var msg = new Message();
+
+      msg.should.have.property('settings').an('object');
+      msg.settings.should.not.have.property('category');
+    });
+
+    it('should set category', function () {
+      var msg = new Message();
+
+      msg.category('INVITE_CATEGORY');
+
+      msg.should.have.property('settings').an('object');
+      msg.settings.should.have.property('category');
+      msg.settings.category.should.equal('INVITE_CATEGORY');
+    });
+
+    it('should reject non-string values', function () {
+      var msg = new Message();
+
+      msg
+        .category(5)
+        .category({x:5})
+        .category([5]);
+
+      msg.should.have.property('settings').an('object');
+      msg.settings.should.not.have.property('category');
     });
   });
 
