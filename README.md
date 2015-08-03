@@ -11,10 +11,10 @@
 
 #### Resources
 
-- [apnagent documentation](http://apnagent.qualiancy.com): Official documentation website.
+- [apnagent documentation](http://logicalparadox.github.io/apnagent/): Official documentation website.
 - [Delivering iOS Push Notifications with Node.js](https://blog.engineyard.com/2013/developing-ios-push-notifications-nodejs): In-depth getting started with push notifications and `apnagent` tutorial.
 
-#### Related Projects 
+#### Related Projects
 
 - [apnagent-ios](https://github.com/logicalparadox/apnagent-ios): Tiny iOS application for use with the example(s) and live tests.
 - [apnagent-playground](https://github.com/logicalparadox/apnagent-playground): Extended examples for connecting, error mitigation and available message types.
