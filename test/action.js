@@ -30,26 +30,14 @@ describe('action', function(){
         action.should.have.property('title-loc-key').that.equals('TITLE-LOCKEY');
         action.should.not.have.property('ignore-me');
         action.should.not.have.property('empty');
-        // action.aps.should.deep.equal({
-        //     'body': 'Hello Universe'
-        //   , 'action-loc-key': 'KEY'
-        //   , 'loc-key': 'LOCKEY'
-        //   , 'loc-args': [ 'one', 'two' ]
-        //   , 'launch-image': 'img.png'
-        //   , 'title': 'Greeting'
-        //   , 'title-loc-key': 'TITLE-LOCKEY'
-        //   , 'title-loc-args': ['three', 'four']
-        //   , 'actions': [
-        //       {
-        //          "id" : "delete",
-        //          "title" : "Delete"
-        //       },
-        //       {
-        //          "id" : "reply-to",
-        //          "loc-key" : "REPLYTO",
-        //          "loc-args" : ["Jane"]
-        //       }]
-        // });
+        // action.should.deep.equal({
+        //   'id': 'delete',
+        //   'loc-args': ['John'],
+        //   'loc-key': 'REPLYTO',
+        //   'title': 'Delete',
+        //   'title-loc-args': ['play'],
+        //   'title-loc-key': 'TITLE-LOCKEY'
+        // })
       });
     });
 })
