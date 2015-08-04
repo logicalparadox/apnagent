@@ -5,7 +5,8 @@ describe('Message', function () {
     , device = new Buffer(sample_token.replace(/\s/g, ''), 'hex');
 
   var agent = new apnagent.MockAgent()
-    , Message = __apnagent.Message;
+    , Message = __apnagent.Message
+    , Action = apnagent.Action;
 
   describe('.set()', function () {
     it('should set key/value pairs', function () {
@@ -199,6 +200,27 @@ describe('Message', function () {
 
       msg.should.have.property('settings').an('object');
       msg.settings.should.not.have.property('category');
+    });
+  });
+
+  describe('.actions()', function() {
+    it('should be chainable', function(){
+      var msg = new Message();
+
+      msg.actions([]).actions([]);
+    })
+
+    it('should accept action objects in an array', function(){
+      var msg = new Message()
+         ,action = new Action();
+      action.set('title', 'delete');
+
+      msg
+        .actions([action]);
+
+      msg.should.have.property('aps').that.deep.equal({
+        'actions': [{title: 'delete'}]
+      });
     });
   });
 

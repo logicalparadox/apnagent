@@ -22,22 +22,14 @@ describe('action', function(){
           .set('ignore-me', true)
           .set('empty');
 
-        action.should.have.property('id').that.equals('delete');
-        action.should.have.property('loc-args').that.deep.equals(['John']);
-        action.should.have.property('loc-key').that.equals('REPLYTO');
-        action.should.have.property('title').that.equals('Delete');
-        action.should.have.property('title-loc-args').that.deep.equals(['play']);
-        action.should.have.property('title-loc-key').that.equals('TITLE-LOCKEY');
-        action.should.not.have.property('ignore-me');
-        action.should.not.have.property('empty');
-        // action.should.deep.equal({
-        //   'id': 'delete',
-        //   'loc-args': ['John'],
-        //   'loc-key': 'REPLYTO',
-        //   'title': 'Delete',
-        //   'title-loc-args': ['play'],
-        //   'title-loc-key': 'TITLE-LOCKEY'
-        // })
+        action.should.have.property('detail').that.deep.equals({
+          'id': 'delete',
+          'loc-args': ['John'],
+          'loc-key': 'REPLYTO',
+          'title': 'Delete',
+          'title-loc-args': ['play'],
+          'title-loc-key': 'TITLE-LOCKEY'
+        });
       });
 
       it('should set accept an object', function () {
@@ -48,9 +40,10 @@ describe('action', function(){
           'ignore-me': true
         });
 
-        action.should.have.property('id').that.equals('delete');
-        action.should.have.property('title').that.equals('Delete');
-        action.should.not.have.property('ignore-me');
+        action.should.have.property('detail').that.deep.equals({
+          'id': 'delete',
+          'title': 'Delete'
+          });
       });
 
       it('should require an array value for args', function(){
@@ -58,7 +51,8 @@ describe('action', function(){
         action
           .set('loc-args', 'simple string');
 
-        action.should.not.have.property('loc-args')
+        action.should.have.property('detail')
+        action.detail.should.not.have.property('loc-args')
       })
     });
 })
