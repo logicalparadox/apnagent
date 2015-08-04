@@ -39,5 +39,26 @@ describe('action', function(){
         //   'title-loc-key': 'TITLE-LOCKEY'
         // })
       });
+
+      it('should set accept an object', function () {
+        var action = new Action();
+        action.set({
+          'id': 'delete',
+          'title': 'Delete',
+          'ignore-me': true
+        });
+
+        action.should.have.property('id').that.equals('delete');
+        action.should.have.property('title').that.equals('Delete');
+        action.should.not.have.property('ignore-me');
+      });
+
+      it('should require an array value for args', function(){
+        var action = new Action();
+        action
+          .set('loc-args', 'simple string');
+
+        action.should.not.have.property('loc-args')
+      })
     });
 })
