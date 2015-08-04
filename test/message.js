@@ -212,8 +212,7 @@ describe('Message', function () {
 
     it('should accept action objects in an array', function(){
       var msg = new Message()
-         ,action = new Action();
-      action.set('title', 'delete');
+         ,action = new Action({'title': 'delete'});
 
       msg
         .actions([action]);
@@ -222,6 +221,20 @@ describe('Message', function () {
         'actions': [{title: 'delete'}]
       });
     });
+
+    it('should accept multiple parameters instead of an array', function(){
+      var msg = new Message();
+
+      msg
+        .actions(new Action({title: 'one'}), new Action({title: 'two'}) );
+
+      msg.aps.should.deep.equal({
+        actions: [
+           {title: 'one'}
+          ,{title: 'two'}
+        ]
+      });
+    })
   });
 
   describe('.device()', function () {
