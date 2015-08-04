@@ -1,6 +1,18 @@
 describe('action', function(){
   var Action = apnagent.Action;
 
+  describe('constructor', function(){
+    it('should pass its parameters to set', function() {
+      var action = new Action({'title': 'reply', 'id': 'REPLYTO'});
+
+      action.should.have.property('detail')
+      action.detail.should.deep.equals({
+        'id': 'REPLYTO'
+        ,'title': 'reply'
+      })
+    });
+  })
+
   describe('.set()', function () {
 	  it('should be chainable', function(){
 	    var action = new Action();
@@ -8,7 +20,7 @@ describe('action', function(){
       action
         .set('id', 'delete')
         .set('title', 'Delete');
-	  })
+	  });
 
       it('should set key/value pairs', function () {
         var action = new Action();
@@ -23,26 +35,26 @@ describe('action', function(){
           .set('empty');
 
         action.should.have.property('detail').that.deep.equals({
-          'id': 'delete',
-          'loc-args': ['John'],
-          'loc-key': 'REPLYTO',
-          'title': 'Delete',
-          'title-loc-args': ['play'],
-          'title-loc-key': 'TITLE-LOCKEY'
+           'id': 'delete'
+          ,'loc-args': ['John']
+          ,'loc-key': 'REPLYTO'
+          ,'title': 'Delete'
+          ,'title-loc-args': ['play']
+          ,'title-loc-key': 'TITLE-LOCKEY'
         });
       });
 
       it('should set accept an object', function () {
         var action = new Action();
         action.set({
-          'id': 'delete',
-          'title': 'Delete',
-          'ignore-me': true
+           'id': 'delete'
+          ,'title': 'Delete'
+          ,'ignore-me': true
         });
 
         action.should.have.property('detail').that.deep.equals({
-          'id': 'delete',
-          'title': 'Delete'
+           'id': 'delete'
+          ,'title': 'Delete'
           });
       });
 
