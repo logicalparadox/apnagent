@@ -29,6 +29,21 @@ describe('Agent', function () {
       agent.set('key file', key);
       agent.connect(function (err) {
         should.not.exist(err);
+        agent.get('keepalive delay').should.equal('5m');
+        agent.once([ 'gateway', 'close' ], done);
+        agent.close();
+      });
+    }));
+
+    it('should be able to connect when keepalive disabled', live(function (done) {
+      var agent = new apnagent.Agent();
+      agent.enable('sandbox');
+      agent.set('cert file', cert);
+      agent.set('key file', key);
+      agent.set('keepalive delay', 0);
+      agent.connect(function (err) {
+        should.not.exist(err);
+        agent.get('keepalive delay').should.equal(0);
         agent.once([ 'gateway', 'close' ], done);
         agent.close();
       });
